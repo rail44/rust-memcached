@@ -1,4 +1,5 @@
 #![allow(non_camel_case_types)]
+
 pub type int8_t = ::libc::c_char;
 pub type int16_t = ::libc::c_short;
 pub type int32_t = ::libc::c_int;
@@ -644,7 +645,6 @@ pub type __locale_t = *mut Struct___locale_struct;
 pub type locale_t = __locale_t;
 pub type tcp_seq = u_int32_t;
 pub struct Struct_tcphdr;
-
 pub struct Union_Unnamed12 {
     pub data: [u32, ..5u],
 }
@@ -1240,6 +1240,7 @@ pub type memcached_server_function = memcached_server_fn;
 pub type memcached_trigger_key = memcached_trigger_key_fn;
 pub type memcached_trigger_delete_key = memcached_trigger_delete_key_fn;
 pub type memcached_dump_func = memcached_dump_fn;
+#[link(name = "memcached")]
 extern "C" {
     pub static in6addr_any: Struct_in6_addr;
     pub static in6addr_loopback: Struct_in6_addr;
