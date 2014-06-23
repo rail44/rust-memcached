@@ -3,6 +3,16 @@
 extern crate libc;
 
 use std::ptr;
+use std::mem::size_of;
+use std::c_str::CString;
+use libc::{
+  c_char,
+  c_uint,
+  size_t,
+  malloc,
+  free,
+  c_void
+};
 use native::{
   memcached_create,
   memcached_set,
@@ -11,12 +21,6 @@ use native::{
   memcached_return_t,
   memcached_server_add,
 };
-use libc::{
-  c_char,
-  c_uint,
-  size_t
-};
-use std::c_str::CString;
 
 pub mod native;
 
@@ -48,12 +52,16 @@ impl Client {
 
   pub fn get(&self, key: &str) -> CString {
     let key_c = key.to_c_str();
-    let value_length = 0 as *mut size_t;
-    let error = 0 as *mut memcached_return_t;
-    let flags = 0 as *mut c_uint;
     unsafe {
-      let value = memcached_get(self.cl, key_c.clone().unwrap(), key_c.len() as u64, value_length, flags, error) as *c_char;
-      CString::new(value, false)
+      let value_length = malloc(size_of::<size_t>() as size_t) as *mut size_t;
+      let error = malloc(size_of::<memcached_return_t>() as size_t) as *mut memcached_return_t;
+      let flags = malloc(size_of::<c_uint>() as size_t) as *mut c_uint;
+      let value = memcached_get(self.cl, key_c.clone().unwrap(), key_c.len() as u64, value_length, flags, error);
+      let c_str = CString::new(value as *c_char, false);
+      free(value_length as *mut c_void);
+      free(error as *mut c_void);
+      free(flags as *mut c_void);
+      c_str
     }
   }
 }
