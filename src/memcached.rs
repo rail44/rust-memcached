@@ -33,6 +33,12 @@ pub struct Server<'a> {
   port: uint,
 }
 
+impl<'a> Server<'a> {
+  pub fn new<'a>(host: &'a str, port: uint) -> Server<'a> {
+    Server { host: host, port: port }
+  }
+}
+
 impl Client {
   pub fn new() -> Client {
     Client{ cl: unsafe { memcached_create(ptr::mut_null()) } }
@@ -69,8 +75,8 @@ impl Client {
 #[test]
 fn test() {
   let cache = Client::new();
-  let server = &Server { host: "127.0.0.1", port: 11211 };
-  cache.add_server(server);
+  let server = Server::new("127.0.0.1", 11211);
+  cache.add_server(&server);
   cache.set("hoge", "fuga", 10);
   assert!(cache.get("hoge").as_str().unwrap() == "fuga");
 }
