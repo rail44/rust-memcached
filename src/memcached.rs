@@ -1,5 +1,7 @@
 #![crate_id = "memcached#0.1"]
 #![crate_type = "lib"]
+#![feature(macro_rules)]
+
 extern crate libc;
 
 use std::ptr;
@@ -22,6 +24,7 @@ use native::{
   memcached_server_add,
 };
 
+pub mod macros;
 pub mod native;
 
 pub struct Client {
@@ -63,20 +66,22 @@ impl Client {
       let error = malloc(size_of::<memcached_return_t>() as size_t) as *mut memcached_return_t;
       let flags = malloc(size_of::<c_uint>() as size_t) as *mut c_uint;
       let value = memcached_get(self.cl, key_c.clone().unwrap(), key_c.len() as u64, value_length, flags, error);
-      let c_str = CString::new(value as *c_char, false);
       free(value_length as *mut c_void);
       free(error as *mut c_void);
       free(flags as *mut c_void);
-      c_str
+      CString::new(value as *c_char, false)
     }
+  }
+
+  pub fn get_str(&self, key: &str) -> String {
+    self.get(key).as_str().unwrap().into_string()
   }
 }
 
 #[test]
 fn test() {
-  let cache = Client::new();
-  let server = Server::new("127.0.0.1", 11211);
-  cache.add_server(&server);
+  let server = "127.0.0.1:11211";
+  let cache = memcached_client!(server);
   cache.set("hoge", "fuga", 10);
-  assert!(cache.get("hoge").as_str().unwrap() == "fuga");
+  assert!(cache.get_str("hoge").as_slice() == "fuga");
 }
