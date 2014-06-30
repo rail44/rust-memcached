@@ -4,6 +4,7 @@ before_install:
 install:
   - sudo apt-get install rust-nightly libmemcached-dev
 script:
-  - make test
+  - rustc --test src/memcached.rs
+  - ./memcached
 services:
   - memcached
