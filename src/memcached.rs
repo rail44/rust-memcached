@@ -1,6 +1,5 @@
 #![crate_id = "memcached#0.1"]
 #![crate_type = "lib"]
-#![feature(macro_rules)]
 
 extern crate libc;
 
@@ -24,7 +23,6 @@ use native::{
   memcached_server_add,
 };
 
-pub mod macros;
 pub mod native;
 
 pub struct Client {
@@ -69,7 +67,7 @@ impl Client {
       free(value_length as *mut c_void);
       free(error as *mut c_void);
       free(flags as *mut c_void);
-      CString::new(value as *c_char, false)
+      CString::new(value as *const c_char, false)
     }
   }
 
@@ -80,8 +78,9 @@ impl Client {
 
 #[test]
 fn test() {
-  let server = "127.0.0.1:11211";
-  let cache = memcached_client!(server);
-  cache.set("hoge", "fuga", 10);
-  assert!(cache.get_str("hoge").as_slice() == "fuga");
+  let cl = Client::new();
+  let server = Server::new("127.0.0.1", 11211);
+  cl.add_server(&server);
+  cl.set("hoge", "fuga", 10);
+  assert!(cl.get_str("hoge").as_slice() == "fuga");
 }

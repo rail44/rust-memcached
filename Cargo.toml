@@ -1,4 +1,4 @@
-[project]
+[package]
 name = "memcached"
 version = "0.0.1"
 authors = ["Satoshi Amemiya<satoshi_amemiya@voyagegroup.com>"]

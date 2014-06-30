@@ -29,6 +29,7 @@ pub type uintptr_t = ::libc::c_ulong;
 pub type intmax_t = ::libc::c_long;
 pub type uintmax_t = ::libc::c_ulong;
 pub type __gwchar_t = ::libc::c_int;
+#[repr(C)]
 pub struct imaxdiv_t {
     pub quot: ::libc::c_long,
     pub rem: ::libc::c_long,
@@ -64,6 +65,7 @@ pub type __nlink_t = ::libc::c_ulong;
 pub type __off_t = ::libc::c_long;
 pub type __off64_t = ::libc::c_long;
 pub type __pid_t = ::libc::c_int;
+#[repr(C)]
 pub struct __fsid_t {
     pub __val: [::libc::c_int, ..2u],
 }
@@ -94,6 +96,7 @@ pub type __qaddr_t = *mut __quad_t;
 pub type __caddr_t = *mut ::libc::c_char;
 pub type __intptr_t = ::libc::c_long;
 pub type __socklen_t = ::libc::c_uint;
+#[repr(C)]
 pub struct Union_wait {
     pub data: [u32, ..1u],
 }
@@ -108,17 +111,20 @@ impl Union_wait {
         unsafe { ::std::mem::transmute(self) }
     }
 }
+#[repr(C)]
 pub struct Struct_Unnamed1 {
     pub __w_termsig: ::libc::c_uint,
     pub __w_coredump: ::libc::c_uint,
     pub __w_retcode: ::libc::c_uint,
     pub unnamed_field1: ::libc::c_uint,
 }
+#[repr(C)]
 pub struct Struct_Unnamed2 {
     pub __w_stopval: ::libc::c_uint,
     pub __w_stopsig: ::libc::c_uint,
     pub unnamed_field1: ::libc::c_uint,
 }
+#[repr(C)]
 pub struct __WAIT_STATUS {
     pub data: [u64, ..1u],
 }
@@ -130,14 +136,17 @@ impl __WAIT_STATUS {
         unsafe { ::std::mem::transmute(self) }
     }
 }
+#[repr(C)]
 pub struct div_t {
     pub quot: ::libc::c_int,
     pub rem: ::libc::c_int,
 }
+#[repr(C)]
 pub struct ldiv_t {
     pub quot: ::libc::c_long,
     pub rem: ::libc::c_long,
 }
+#[repr(C)]
 pub struct lldiv_t {
     pub quot: ::libc::c_longlong,
     pub rem: ::libc::c_longlong,
@@ -176,20 +185,24 @@ pub type u_int32_t = ::libc::c_uint;
 pub type u_int64_t = ::libc::c_ulong;
 pub type register_t = ::libc::c_long;
 pub type __sig_atomic_t = ::libc::c_int;
+#[repr(C)]
 pub struct __sigset_t {
     pub __val: [::libc::c_ulong, ..16u],
 }
 pub type sigset_t = __sigset_t;
+#[repr(C)]
 pub struct Struct_timespec {
     pub tv_sec: __time_t,
     pub tv_nsec: __syscall_slong_t,
 }
+#[repr(C)]
 pub struct Struct_timeval {
     pub tv_sec: __time_t,
     pub tv_usec: __suseconds_t,
 }
 pub type suseconds_t = __suseconds_t;
 pub type __fd_mask = ::libc::c_long;
+#[repr(C)]
 pub struct fd_set {
     pub __fds_bits: [__fd_mask, ..16u],
 }
@@ -199,6 +212,7 @@ pub type blkcnt_t = __blkcnt_t;
 pub type fsblkcnt_t = __fsblkcnt_t;
 pub type fsfilcnt_t = __fsfilcnt_t;
 pub type pthread_t = ::libc::c_ulong;
+#[repr(C)]
 pub struct Union_pthread_attr_t {
     pub data: [u64, ..7u],
 }
@@ -211,11 +225,13 @@ impl Union_pthread_attr_t {
     }
 }
 pub type pthread_attr_t = Union_pthread_attr_t;
+#[repr(C)]
 pub struct Struct___pthread_internal_list {
     pub __prev: *mut Struct___pthread_internal_list,
     pub __next: *mut Struct___pthread_internal_list,
 }
 pub type __pthread_list_t = Struct___pthread_internal_list;
+#[repr(C)]
 pub struct Struct___pthread_mutex_s {
     pub __lock: ::libc::c_int,
     pub __count: ::libc::c_uint,
@@ -226,6 +242,7 @@ pub struct Struct___pthread_mutex_s {
     pub __elision: ::libc::c_short,
     pub __list: __pthread_list_t,
 }
+#[repr(C)]
 pub struct pthread_mutex_t {
     pub data: [u64, ..5u],
 }
@@ -240,6 +257,7 @@ impl pthread_mutex_t {
         unsafe { ::std::mem::transmute(self) }
     }
 }
+#[repr(C)]
 pub struct pthread_mutexattr_t {
     pub data: [u32, ..1u],
 }
@@ -251,6 +269,7 @@ impl pthread_mutexattr_t {
         unsafe { ::std::mem::transmute(self) }
     }
 }
+#[repr(C)]
 pub struct Struct_Unnamed3 {
     pub __lock: ::libc::c_int,
     pub __futex: ::libc::c_uint,
@@ -261,6 +280,7 @@ pub struct Struct_Unnamed3 {
     pub __nwaiters: ::libc::c_uint,
     pub __broadcast_seq: ::libc::c_uint,
 }
+#[repr(C)]
 pub struct pthread_cond_t {
     pub data: [u64, ..6u],
 }
@@ -275,6 +295,7 @@ impl pthread_cond_t {
         unsafe { ::std::mem::transmute(self) }
     }
 }
+#[repr(C)]
 pub struct pthread_condattr_t {
     pub data: [u32, ..1u],
 }
@@ -288,6 +309,7 @@ impl pthread_condattr_t {
 }
 pub type pthread_key_t = ::libc::c_uint;
 pub type pthread_once_t = ::libc::c_int;
+#[repr(C)]
 pub struct Struct_Unnamed4 {
     pub __lock: ::libc::c_int,
     pub __nr_readers: ::libc::c_uint,
@@ -301,6 +323,7 @@ pub struct Struct_Unnamed4 {
     pub __pad2: ::libc::c_ulong,
     pub __flags: ::libc::c_uint,
 }
+#[repr(C)]
 pub struct pthread_rwlock_t {
     pub data: [u64, ..7u],
 }
@@ -315,6 +338,7 @@ impl pthread_rwlock_t {
         unsafe { ::std::mem::transmute(self) }
     }
 }
+#[repr(C)]
 pub struct pthread_rwlockattr_t {
     pub data: [u64, ..1u],
 }
@@ -327,6 +351,7 @@ impl pthread_rwlockattr_t {
     }
 }
 pub type pthread_spinlock_t = ::libc::c_int;
+#[repr(C)]
 pub struct pthread_barrier_t {
     pub data: [u64, ..4u],
 }
@@ -338,6 +363,7 @@ impl pthread_barrier_t {
         unsafe { ::std::mem::transmute(self) }
     }
 }
+#[repr(C)]
 pub struct pthread_barrierattr_t {
     pub data: [u32, ..1u],
 }
@@ -349,6 +375,7 @@ impl pthread_barrierattr_t {
         unsafe { ::std::mem::transmute(self) }
     }
 }
+#[repr(C)]
 pub struct Struct_random_data {
     pub fptr: *mut int32_t,
     pub rptr: *mut int32_t,
@@ -358,6 +385,7 @@ pub struct Struct_random_data {
     pub rand_sep: ::libc::c_int,
     pub end_ptr: *mut int32_t,
 }
+#[repr(C)]
 pub struct Struct_drand48_data {
     pub __x: [::libc::c_ushort, ..3u],
     pub __old_x: [::libc::c_ushort, ..3u],
@@ -367,9 +395,10 @@ pub struct Struct_drand48_data {
 }
 pub type __compar_fn_t =
     ::std::option::Option<extern "C" fn
-                              (arg1: *::libc::c_void, arg2: *::libc::c_void)
-                              -> ::libc::c_int>;
+                              (arg1: *const ::libc::c_void,
+                               arg2: *const ::libc::c_void) -> ::libc::c_int>;
 pub type memcached_socket_t = ::libc::c_int;
+#[repr(C)]
 pub struct Struct_iovec {
     pub iov_base: *mut ::libc::c_void,
     pub iov_len: size_t,
@@ -386,10 +415,12 @@ pub static SOCK_PACKET: ::libc::c_uint = 10;
 pub static SOCK_CLOEXEC: ::libc::c_uint = 524288;
 pub static SOCK_NONBLOCK: ::libc::c_uint = 2048;
 pub type sa_family_t = ::libc::c_ushort;
+#[repr(C)]
 pub struct Struct_sockaddr {
     pub sa_family: sa_family_t,
     pub sa_data: [::libc::c_char, ..14u],
 }
+#[repr(C)]
 pub struct Struct_sockaddr_storage {
     pub ss_family: sa_family_t,
     pub __ss_align: ::libc::c_ulong,
@@ -415,6 +446,7 @@ pub static MSG_MORE: ::libc::c_uint = 32768;
 pub static MSG_WAITFORONE: ::libc::c_uint = 65536;
 pub static MSG_FASTOPEN: ::libc::c_uint = 536870912;
 pub static MSG_CMSG_CLOEXEC: ::libc::c_uint = 1073741824;
+#[repr(C)]
 pub struct Struct_msghdr {
     pub msg_name: *mut ::libc::c_void,
     pub msg_namelen: socklen_t,
@@ -424,6 +456,7 @@ pub struct Struct_msghdr {
     pub msg_controllen: size_t,
     pub msg_flags: ::libc::c_int,
 }
+#[repr(C)]
 pub struct Struct_cmsghdr {
     pub cmsg_len: size_t,
     pub cmsg_level: ::libc::c_int,
@@ -432,10 +465,12 @@ pub struct Struct_cmsghdr {
 }
 pub type Enum_Unnamed6 = ::libc::c_uint;
 pub static SCM_RIGHTS: ::libc::c_uint = 1;
+#[repr(C)]
 pub struct Struct_linger {
     pub l_onoff: ::libc::c_int,
     pub l_linger: ::libc::c_int,
 }
+#[repr(C)]
 pub struct Struct_osockaddr {
     pub sa_family: ::libc::c_ushort,
     pub sa_data: [::libc::c_uchar, ..14u],
@@ -445,18 +480,22 @@ pub static SHUT_RD: ::libc::c_uint = 0;
 pub static SHUT_WR: ::libc::c_uint = 1;
 pub static SHUT_RDWR: ::libc::c_uint = 2;
 pub type in_addr_t = uint32_t;
+#[repr(C)]
 pub struct Struct_in_addr {
     pub s_addr: in_addr_t,
 }
+#[repr(C)]
 pub struct Struct_ip_opts {
     pub ip_dst: Struct_in_addr,
     pub ip_opts: [::libc::c_char, ..40u],
 }
+#[repr(C)]
 pub struct Struct_ip_mreqn {
     pub imr_multiaddr: Struct_in_addr,
     pub imr_address: Struct_in_addr,
     pub imr_ifindex: ::libc::c_int,
 }
+#[repr(C)]
 pub struct Struct_in_pktinfo {
     pub ipi_ifindex: ::libc::c_int,
     pub ipi_spec_dst: Struct_in_addr,
@@ -524,9 +563,11 @@ pub static IPPORT_WHOSERVER: ::libc::c_uint = 513;
 pub static IPPORT_ROUTESERVER: ::libc::c_uint = 520;
 pub static IPPORT_RESERVED: ::libc::c_uint = 1024;
 pub static IPPORT_USERRESERVED: ::libc::c_uint = 5000;
+#[repr(C)]
 pub struct Struct_in6_addr {
     pub __in6_u: Union_Unnamed11,
 }
+#[repr(C)]
 pub struct Union_Unnamed11 {
     pub data: [u32, ..4u],
 }
@@ -541,12 +582,14 @@ impl Union_Unnamed11 {
         unsafe { ::std::mem::transmute(self) }
     }
 }
+#[repr(C)]
 pub struct Struct_sockaddr_in {
     pub sin_family: sa_family_t,
     pub sin_port: in_port_t,
     pub sin_addr: Struct_in_addr,
     pub sin_zero: [::libc::c_uchar, ..8u],
 }
+#[repr(C)]
 pub struct Struct_sockaddr_in6 {
     pub sin6_family: sa_family_t,
     pub sin6_port: in_port_t,
@@ -554,28 +597,34 @@ pub struct Struct_sockaddr_in6 {
     pub sin6_addr: Struct_in6_addr,
     pub sin6_scope_id: uint32_t,
 }
+#[repr(C)]
 pub struct Struct_ip_mreq {
     pub imr_multiaddr: Struct_in_addr,
     pub imr_interface: Struct_in_addr,
 }
+#[repr(C)]
 pub struct Struct_ip_mreq_source {
     pub imr_multiaddr: Struct_in_addr,
     pub imr_interface: Struct_in_addr,
     pub imr_sourceaddr: Struct_in_addr,
 }
+#[repr(C)]
 pub struct Struct_ipv6_mreq {
     pub ipv6mr_multiaddr: Struct_in6_addr,
     pub ipv6mr_interface: ::libc::c_uint,
 }
+#[repr(C)]
 pub struct Struct_group_req {
     pub gr_interface: uint32_t,
     pub gr_group: Struct_sockaddr_storage,
 }
+#[repr(C)]
 pub struct Struct_group_source_req {
     pub gsr_interface: uint32_t,
     pub gsr_group: Struct_sockaddr_storage,
     pub gsr_source: Struct_sockaddr_storage,
 }
+#[repr(C)]
 pub struct Struct_ip_msfilter {
     pub imsf_multiaddr: Struct_in_addr,
     pub imsf_interface: Struct_in_addr,
@@ -583,6 +632,7 @@ pub struct Struct_ip_msfilter {
     pub imsf_numsrc: uint32_t,
     pub imsf_slist: [Struct_in_addr, ..1u],
 }
+#[repr(C)]
 pub struct Struct_group_filter {
     pub gf_interface: uint32_t,
     pub gf_group: Struct_sockaddr_storage,
@@ -590,17 +640,20 @@ pub struct Struct_group_filter {
     pub gf_numsrc: uint32_t,
     pub gf_slist: [Struct_sockaddr_storage, ..1u],
 }
+#[repr(C)]
 pub struct Struct_rpcent {
     pub r_name: *mut ::libc::c_char,
     pub r_aliases: *mut *mut ::libc::c_char,
     pub r_number: ::libc::c_int,
 }
+#[repr(C)]
 pub struct Struct_netent {
     pub n_name: *mut ::libc::c_char,
     pub n_aliases: *mut *mut ::libc::c_char,
     pub n_addrtype: ::libc::c_int,
     pub n_net: uint32_t,
 }
+#[repr(C)]
 pub struct Struct_hostent {
     pub h_name: *mut ::libc::c_char,
     pub h_aliases: *mut *mut ::libc::c_char,
@@ -608,17 +661,20 @@ pub struct Struct_hostent {
     pub h_length: ::libc::c_int,
     pub h_addr_list: *mut *mut ::libc::c_char,
 }
+#[repr(C)]
 pub struct Struct_servent {
     pub s_name: *mut ::libc::c_char,
     pub s_aliases: *mut *mut ::libc::c_char,
     pub s_port: ::libc::c_int,
     pub s_proto: *mut ::libc::c_char,
 }
+#[repr(C)]
 pub struct Struct_protoent {
     pub p_name: *mut ::libc::c_char,
     pub p_aliases: *mut *mut ::libc::c_char,
     pub p_proto: ::libc::c_int,
 }
+#[repr(C)]
 pub struct Struct_addrinfo {
     pub ai_flags: ::libc::c_int,
     pub ai_family: ::libc::c_int,
@@ -629,26 +685,31 @@ pub struct Struct_addrinfo {
     pub ai_canonname: *mut ::libc::c_char,
     pub ai_next: *mut Struct_addrinfo,
 }
+#[repr(C)]
 pub struct Struct_sockaddr_un {
     pub sun_family: sa_family_t,
     pub sun_path: [::libc::c_char, ..108u],
 }
+#[repr(C)]
 pub struct Struct___locale_struct {
     pub __locales: [*mut Struct___locale_data, ..13u],
-    pub __ctype_b: *::libc::c_ushort,
-    pub __ctype_tolower: *::libc::c_int,
-    pub __ctype_toupper: *::libc::c_int,
-    pub __names: [*::libc::c_char, ..13u],
+    pub __ctype_b: *const ::libc::c_ushort,
+    pub __ctype_tolower: *const ::libc::c_int,
+    pub __ctype_toupper: *const ::libc::c_int,
+    pub __names: [*const ::libc::c_char, ..13u],
 }
 pub enum Struct___locale_data { }
 pub type __locale_t = *mut Struct___locale_struct;
 pub type locale_t = __locale_t;
 pub type tcp_seq = u_int32_t;
+#[repr(C)]
 pub struct Struct_tcphdr;
+#[repr(C)]
 pub struct Union_Unnamed12 {
     pub data: [u32, ..5u],
 }
 impl Union_Unnamed12 { }
+#[repr(C)]
 pub struct Struct_Unnamed13 {
     pub th_sport: u_int16_t,
     pub th_dport: u_int16_t,
@@ -661,6 +722,7 @@ pub struct Struct_Unnamed13 {
     pub th_sum: u_int16_t,
     pub th_urp: u_int16_t,
 }
+#[repr(C)]
 pub struct Struct_Unnamed14 {
     pub source: u_int16_t,
     pub dest: u_int16_t,
@@ -697,6 +759,7 @@ pub static TCP_CA_Disorder: ::libc::c_uint = 1;
 pub static TCP_CA_CWR: ::libc::c_uint = 2;
 pub static TCP_CA_Recovery: ::libc::c_uint = 3;
 pub static TCP_CA_Loss: ::libc::c_uint = 4;
+#[repr(C)]
 pub struct Struct_tcp_info {
     pub tcpi_state: u_int8_t,
     pub tcpi_ca_state: u_int8_t,
@@ -731,6 +794,7 @@ pub struct Struct_tcp_info {
     pub tcpi_rcv_space: u_int32_t,
     pub tcpi_total_retrans: u_int32_t,
 }
+#[repr(C)]
 pub struct Struct_tcp_md5sig {
     pub tcpm_addr: Struct_sockaddr_storage,
     pub __tcpm_pad1: u_int16_t,
@@ -738,6 +802,7 @@ pub struct Struct_tcp_md5sig {
     pub __tcpm_pad2: u_int32_t,
     pub tcpm_key: [u_int8_t, ..80u],
 }
+#[repr(C)]
 pub struct Struct_tcp_repair_opt {
     pub opt_code: u_int32_t,
     pub opt_val: u_int32_t,
@@ -747,6 +812,7 @@ pub static TCP_NO_QUEUE: ::libc::c_uint = 0;
 pub static TCP_RECV_QUEUE: ::libc::c_uint = 1;
 pub static TCP_SEND_QUEUE: ::libc::c_uint = 2;
 pub static TCP_QUEUES_NR: ::libc::c_uint = 3;
+#[repr(C)]
 pub struct Struct_tcp_cookie_transactions {
     pub tcpct_flags: u_int16_t,
     pub __tcpct_pad1: u_int8_t,
@@ -897,7 +963,7 @@ pub type memcached_array_st = Struct_memcached_array_st;
 pub enum Struct_memcached_error_t { }
 pub type memcached_error_t = Struct_memcached_error_t;
 pub type memcached_server_st = Struct_memcached_server_st;
-pub type memcached_server_instance_st = *Struct_memcached_server_st;
+pub type memcached_server_instance_st = *const Struct_memcached_server_st;
 pub type memcached_server_list_st = *mut Struct_memcached_server_st;
 pub type memcached_callback_st = Struct_memcached_callback_st;
 pub type memcached_string_st = Struct_memcached_string_st;
@@ -906,62 +972,68 @@ pub enum Struct_memcached_continuum_item_st { }
 pub type memcached_continuum_item_st = Struct_memcached_continuum_item_st;
 pub type memcached_execute_fn =
     ::std::option::Option<extern "C" fn
-                              (arg1: *memcached_st,
+                              (arg1: *const memcached_st,
                                arg2: *mut memcached_result_st,
                                arg3: *mut ::libc::c_void)
                               -> memcached_return_t>;
 pub type memcached_server_fn =
     ::std::option::Option<extern "C" fn
-                              (arg1: *memcached_st,
+                              (arg1: *const memcached_st,
                                arg2: memcached_server_instance_st,
                                arg3: *mut ::libc::c_void)
                               -> memcached_return_t>;
 pub type memcached_stat_fn =
     ::std::option::Option<extern "C" fn
                               (arg1: memcached_server_instance_st,
-                               arg2: *::libc::c_char, arg3: size_t,
-                               arg4: *::libc::c_char, arg5: size_t,
+                               arg2: *const ::libc::c_char, arg3: size_t,
+                               arg4: *const ::libc::c_char, arg5: size_t,
                                arg6: *mut ::libc::c_void)
                               -> memcached_return_t>;
 pub type memcached_free_fn =
     ::std::option::Option<extern "C" fn
-                              (arg1: *memcached_st, arg2: *mut ::libc::c_void,
+                              (arg1: *const memcached_st,
+                               arg2: *mut ::libc::c_void,
                                arg3: *mut ::libc::c_void)>;
 pub type memcached_malloc_fn =
     ::std::option::Option<extern "C" fn
-                              (arg1: *memcached_st, arg2: size_t,
+                              (arg1: *const memcached_st, arg2: size_t,
                                arg3: *mut ::libc::c_void)
                               -> *mut ::libc::c_void>;
 pub type memcached_realloc_fn =
     ::std::option::Option<extern "C" fn
-                              (arg1: *memcached_st, arg2: *mut ::libc::c_void,
-                               arg3: size_t, arg4: *mut ::libc::c_void)
+                              (arg1: *const memcached_st,
+                               arg2: *mut ::libc::c_void, arg3: size_t,
+                               arg4: *mut ::libc::c_void)
                               -> *mut ::libc::c_void>;
 pub type memcached_calloc_fn =
     ::std::option::Option<extern "C" fn
-                              (arg1: *memcached_st, arg2: size_t,
+                              (arg1: *const memcached_st, arg2: size_t,
                                arg3: size_t, arg4: *mut ::libc::c_void)
                               -> *mut ::libc::c_void>;
 pub type memcached_clone_fn =
     ::std::option::Option<extern "C" fn
-                              (arg1: *mut memcached_st, arg2: *memcached_st)
+                              (arg1: *mut memcached_st,
+                               arg2: *const memcached_st)
                               -> memcached_return_t>;
 pub type memcached_cleanup_fn =
-    ::std::option::Option<extern "C" fn(arg1: *memcached_st)
+    ::std::option::Option<extern "C" fn(arg1: *const memcached_st)
                               -> memcached_return_t>;
 pub type memcached_trigger_key_fn =
     ::std::option::Option<extern "C" fn
-                              (arg1: *memcached_st, arg2: *::libc::c_char,
-                               arg3: size_t, arg4: *mut memcached_result_st)
+                              (arg1: *const memcached_st,
+                               arg2: *const ::libc::c_char, arg3: size_t,
+                               arg4: *mut memcached_result_st)
                               -> memcached_return_t>;
 pub type memcached_trigger_delete_key_fn =
     ::std::option::Option<extern "C" fn
-                              (arg1: *memcached_st, arg2: *::libc::c_char,
-                               arg3: size_t) -> memcached_return_t>;
+                              (arg1: *const memcached_st,
+                               arg2: *const ::libc::c_char, arg3: size_t)
+                              -> memcached_return_t>;
 pub type memcached_dump_fn =
     ::std::option::Option<extern "C" fn
-                              (arg1: *memcached_st, arg2: *::libc::c_char,
-                               arg3: size_t, arg4: *mut ::libc::c_void)
+                              (arg1: *const memcached_st,
+                               arg2: *const ::libc::c_char, arg3: size_t,
+                               arg4: *mut ::libc::c_void)
                               -> memcached_return_t>;
 pub type hashkit_return_t = ::libc::c_uint;
 pub static HASHKIT_SUCCESS: ::libc::c_uint = 0;
@@ -993,8 +1065,9 @@ pub enum Struct_hashkit_string_st { }
 pub type hashkit_string_st = Struct_hashkit_string_st;
 pub type hashkit_hash_fn =
     ::std::option::Option<extern "C" fn
-                              (arg1: *::libc::c_char, arg2: size_t,
+                              (arg1: *const ::libc::c_char, arg2: size_t,
                                arg3: *mut ::libc::c_void) -> uint32_t>;
+#[repr(C)]
 pub struct Struct_hashkit_st {
     pub base_hash: Struct_hashkit_function_st,
     pub distribution_hash: Struct_hashkit_function_st,
@@ -1002,21 +1075,26 @@ pub struct Struct_hashkit_st {
     pub options: Struct_Unnamed18,
     pub _key: *mut ::libc::c_void,
 }
+#[repr(C)]
 pub struct Struct_hashkit_function_st {
     pub function: hashkit_hash_fn,
     pub context: *mut ::libc::c_void,
 }
+#[repr(C)]
 pub struct Struct_Unnamed17 {
     pub is_base_same_distributed: ::libc::c_int,
 }
+#[repr(C)]
 pub struct Struct_Unnamed18 {
     pub is_allocated: ::libc::c_int,
 }
+#[repr(C)]
 pub struct Struct_memcached_callback_st {
     pub callback: *mut memcached_execute_fn,
     pub context: *mut ::libc::c_void,
     pub number_of_callback: uint32_t,
 }
+#[repr(C)]
 pub struct Struct_memcached_string_st {
     pub end: *mut ::libc::c_char,
     pub string: *mut ::libc::c_char,
@@ -1024,10 +1102,12 @@ pub struct Struct_memcached_string_st {
     pub root: *mut Struct_memcached_st,
     pub options: Struct_Unnamed19,
 }
+#[repr(C)]
 pub struct Struct_Unnamed19 {
     pub is_allocated: ::libc::c_int,
     pub is_initialized: ::libc::c_int,
 }
+#[repr(C)]
 pub struct Struct_memcached_result_st {
     pub item_flags: uint32_t,
     pub item_expiration: time_t,
@@ -1040,10 +1120,12 @@ pub struct Struct_memcached_result_st {
     pub item_key: [::libc::c_char, ..251u],
     pub options: Struct_Unnamed20,
 }
+#[repr(C)]
 pub struct Struct_Unnamed20 {
     pub is_allocated: ::libc::c_int,
     pub is_initialized: ::libc::c_int,
 }
+#[repr(C)]
 pub struct Struct_memcached_allocator_t {
     pub calloc: memcached_calloc_fn,
     pub free: memcached_free_fn,
@@ -1051,10 +1133,12 @@ pub struct Struct_memcached_allocator_t {
     pub realloc: memcached_realloc_fn,
     pub context: *mut ::libc::c_void,
 }
+#[repr(C)]
 pub struct Struct_memcached_sasl_st {
     pub callbacks: *mut ::libc::c_void,
     pub is_allocated: ::libc::c_int,
 }
+#[repr(C)]
 pub struct Struct_memcached_st {
     pub state: Struct_Unnamed21,
     pub flags: Struct_Unnamed22,
@@ -1095,11 +1179,13 @@ pub struct Struct_memcached_st {
     pub configure: Struct_Unnamed25,
     pub options: Struct_Unnamed26,
 }
+#[repr(C)]
 pub struct Struct_Unnamed21 {
     pub is_purging: ::libc::c_int,
     pub is_processing_input: ::libc::c_int,
     pub is_time_for_rebuild: ::libc::c_int,
 }
+#[repr(C)]
 pub struct Struct_Unnamed22 {
     pub auto_eject_hosts: ::libc::c_int,
     pub binary_protocol: ::libc::c_int,
@@ -1116,9 +1202,11 @@ pub struct Struct_Unnamed22 {
     pub tcp_keepalive: ::libc::c_int,
     pub is_aes: ::libc::c_int,
 }
+#[repr(C)]
 pub struct Struct_Unnamed23 {
     pub version: ::libc::c_uint,
 }
+#[repr(C)]
 pub struct Struct_Unnamed24 {
     pub weighted: ::libc::c_int,
     pub continuum_count: uint32_t,
@@ -1127,12 +1215,14 @@ pub struct Struct_Unnamed24 {
     pub continuum: *mut memcached_continuum_item_st,
 }
 pub enum Struct_memcached_virtual_bucket_t { }
+#[repr(C)]
 pub struct Struct_Unnamed25 {
     pub initial_pool_size: uint32_t,
     pub max_pool_size: uint32_t,
     pub version: int32_t,
     pub filename: *mut Struct_memcached_array_st,
 }
+#[repr(C)]
 pub struct Struct_Unnamed26 {
     pub is_allocated: ::libc::c_int,
 }
@@ -1142,6 +1232,7 @@ pub static MEMCACHED_SERVER_STATE_ADDRINFO: ::libc::c_uint = 1;
 pub static MEMCACHED_SERVER_STATE_IN_PROGRESS: ::libc::c_uint = 2;
 pub static MEMCACHED_SERVER_STATE_CONNECTED: ::libc::c_uint = 3;
 pub static MEMCACHED_SERVER_STATE_IN_TIMEOUT: ::libc::c_uint = 4;
+#[repr(C)]
 pub struct Struct_memcached_server_st {
     pub options: Struct_Unnamed27,
     pub number_of_hosts: uint32_t,
@@ -1173,17 +1264,20 @@ pub struct Struct_memcached_server_st {
     pub write_buffer: [::libc::c_char, ..8196u],
     pub hostname: [::libc::c_char, ..1025u],
 }
+#[repr(C)]
 pub struct Struct_Unnamed27 {
     pub is_allocated: ::libc::c_int,
     pub is_initialized: ::libc::c_int,
     pub is_shutting_down: ::libc::c_int,
     pub is_dead: ::libc::c_int,
 }
+#[repr(C)]
 pub struct Struct_Unnamed28 {
     pub read: uint32_t,
     pub write: uint32_t,
     pub timeouts: uint32_t,
 }
+#[repr(C)]
 pub struct Struct_memcached_stat_st {
     pub connection_structures: ::libc::c_ulong,
     pub curr_connections: ::libc::c_ulong,
@@ -1212,10 +1306,12 @@ pub struct Struct_memcached_stat_st {
     pub __future: *mut ::libc::c_void,
     pub root: *mut memcached_st,
 }
+#[repr(C)]
 pub struct Struct_memcached_string_t {
-    pub c_str: *::libc::c_char,
+    pub c_str: *const ::libc::c_char,
     pub size: size_t,
 }
+#[repr(C)]
 pub struct Struct_memcached_analysis_st {
     pub root: *mut memcached_st,
     pub average_item_size: uint32_t,
@@ -1246,52 +1342,56 @@ extern "C" {
     pub static in6addr_loopback: Struct_in6_addr;
     pub fn imaxabs(__n: intmax_t) -> intmax_t;
     pub fn imaxdiv(__numer: intmax_t, __denom: intmax_t) -> imaxdiv_t;
-    pub fn strtoimax(__nptr: *::libc::c_char,
+    pub fn strtoimax(__nptr: *const ::libc::c_char,
                      __endptr: *mut *mut ::libc::c_char,
                      __base: ::libc::c_int) -> intmax_t;
-    pub fn strtoumax(__nptr: *::libc::c_char,
+    pub fn strtoumax(__nptr: *const ::libc::c_char,
                      __endptr: *mut *mut ::libc::c_char,
                      __base: ::libc::c_int) -> uintmax_t;
-    pub fn wcstoimax(__nptr: *__gwchar_t, __endptr: *mut *mut __gwchar_t,
-                     __base: ::libc::c_int) -> intmax_t;
-    pub fn wcstoumax(__nptr: *__gwchar_t, __endptr: *mut *mut __gwchar_t,
-                     __base: ::libc::c_int) -> uintmax_t;
+    pub fn wcstoimax(__nptr: *const __gwchar_t,
+                     __endptr: *mut *mut __gwchar_t, __base: ::libc::c_int) ->
+     intmax_t;
+    pub fn wcstoumax(__nptr: *const __gwchar_t,
+                     __endptr: *mut *mut __gwchar_t, __base: ::libc::c_int) ->
+     uintmax_t;
     pub fn __ctype_get_mb_cur_max() -> size_t;
-    pub fn atof(__nptr: *::libc::c_char) -> ::libc::c_double;
-    pub fn atoi(__nptr: *::libc::c_char) -> ::libc::c_int;
-    pub fn atol(__nptr: *::libc::c_char) -> ::libc::c_long;
-    pub fn atoll(__nptr: *::libc::c_char) -> ::libc::c_longlong;
-    pub fn strtod(__nptr: *::libc::c_char, __endptr: *mut *mut ::libc::c_char)
-     -> ::libc::c_double;
-    pub fn strtof(__nptr: *::libc::c_char, __endptr: *mut *mut ::libc::c_char)
-     -> ::libc::c_float;
-    pub fn strtold(__nptr: *::libc::c_char,
+    pub fn atof(__nptr: *const ::libc::c_char) -> ::libc::c_double;
+    pub fn atoi(__nptr: *const ::libc::c_char) -> ::libc::c_int;
+    pub fn atol(__nptr: *const ::libc::c_char) -> ::libc::c_long;
+    pub fn atoll(__nptr: *const ::libc::c_char) -> ::libc::c_longlong;
+    pub fn strtod(__nptr: *const ::libc::c_char,
+                  __endptr: *mut *mut ::libc::c_char) -> ::libc::c_double;
+    pub fn strtof(__nptr: *const ::libc::c_char,
+                  __endptr: *mut *mut ::libc::c_char) -> ::libc::c_float;
+    pub fn strtold(__nptr: *const ::libc::c_char,
                    __endptr: *mut *mut ::libc::c_char) -> ::libc::c_double;
-    pub fn strtol(__nptr: *::libc::c_char, __endptr: *mut *mut ::libc::c_char,
-                  __base: ::libc::c_int) -> ::libc::c_long;
-    pub fn strtoul(__nptr: *::libc::c_char,
+    pub fn strtol(__nptr: *const ::libc::c_char,
+                  __endptr: *mut *mut ::libc::c_char, __base: ::libc::c_int)
+     -> ::libc::c_long;
+    pub fn strtoul(__nptr: *const ::libc::c_char,
                    __endptr: *mut *mut ::libc::c_char, __base: ::libc::c_int)
      -> ::libc::c_ulong;
-    pub fn strtoq(__nptr: *::libc::c_char, __endptr: *mut *mut ::libc::c_char,
-                  __base: ::libc::c_int) -> ::libc::c_longlong;
-    pub fn strtouq(__nptr: *::libc::c_char,
+    pub fn strtoq(__nptr: *const ::libc::c_char,
+                  __endptr: *mut *mut ::libc::c_char, __base: ::libc::c_int)
+     -> ::libc::c_longlong;
+    pub fn strtouq(__nptr: *const ::libc::c_char,
                    __endptr: *mut *mut ::libc::c_char, __base: ::libc::c_int)
      -> ::libc::c_ulonglong;
-    pub fn strtoll(__nptr: *::libc::c_char,
+    pub fn strtoll(__nptr: *const ::libc::c_char,
                    __endptr: *mut *mut ::libc::c_char, __base: ::libc::c_int)
      -> ::libc::c_longlong;
-    pub fn strtoull(__nptr: *::libc::c_char,
+    pub fn strtoull(__nptr: *const ::libc::c_char,
                     __endptr: *mut *mut ::libc::c_char, __base: ::libc::c_int)
      -> ::libc::c_ulonglong;
     pub fn l64a(__n: ::libc::c_long) -> *mut ::libc::c_char;
-    pub fn a64l(__s: *::libc::c_char) -> ::libc::c_long;
+    pub fn a64l(__s: *const ::libc::c_char) -> ::libc::c_long;
     pub fn select(__nfds: ::libc::c_int, __readfds: *mut fd_set,
                   __writefds: *mut fd_set, __exceptfds: *mut fd_set,
                   __timeout: *mut Struct_timeval) -> ::libc::c_int;
     pub fn pselect(__nfds: ::libc::c_int, __readfds: *mut fd_set,
                    __writefds: *mut fd_set, __exceptfds: *mut fd_set,
-                   __timeout: *Struct_timespec, __sigmask: *__sigset_t) ->
-     ::libc::c_int;
+                   __timeout: *const Struct_timespec,
+                   __sigmask: *const __sigset_t) -> ::libc::c_int;
     pub fn gnu_dev_major(__dev: ::libc::c_ulonglong) -> ::libc::c_uint;
     pub fn gnu_dev_minor(__dev: ::libc::c_ulonglong) -> ::libc::c_uint;
     pub fn gnu_dev_makedev(__major: ::libc::c_uint, __minor: ::libc::c_uint)
@@ -1365,23 +1465,25 @@ extern "C" {
                    __arg: *mut ::libc::c_void) -> ::libc::c_int;
     pub fn exit(__status: ::libc::c_int);
     pub fn _Exit(__status: ::libc::c_int);
-    pub fn getenv(__name: *::libc::c_char) -> *mut ::libc::c_char;
+    pub fn getenv(__name: *const ::libc::c_char) -> *mut ::libc::c_char;
     pub fn putenv(__string: *mut ::libc::c_char) -> ::libc::c_int;
-    pub fn setenv(__name: *::libc::c_char, __value: *::libc::c_char,
-                  __replace: ::libc::c_int) -> ::libc::c_int;
-    pub fn unsetenv(__name: *::libc::c_char) -> ::libc::c_int;
+    pub fn setenv(__name: *const ::libc::c_char,
+                  __value: *const ::libc::c_char, __replace: ::libc::c_int) ->
+     ::libc::c_int;
+    pub fn unsetenv(__name: *const ::libc::c_char) -> ::libc::c_int;
     pub fn clearenv() -> ::libc::c_int;
     pub fn mktemp(__template: *mut ::libc::c_char) -> *mut ::libc::c_char;
     pub fn mkstemp(__template: *mut ::libc::c_char) -> ::libc::c_int;
     pub fn mkstemps(__template: *mut ::libc::c_char,
                     __suffixlen: ::libc::c_int) -> ::libc::c_int;
     pub fn mkdtemp(__template: *mut ::libc::c_char) -> *mut ::libc::c_char;
-    pub fn system(__command: *::libc::c_char) -> ::libc::c_int;
-    pub fn realpath(__name: *::libc::c_char, __resolved: *mut ::libc::c_char)
-     -> *mut ::libc::c_char;
-    pub fn bsearch(__key: *::libc::c_void, __base: *::libc::c_void,
-                   __nmemb: size_t, __size: size_t, __compar: __compar_fn_t)
-     -> *mut ::libc::c_void;
+    pub fn system(__command: *const ::libc::c_char) -> ::libc::c_int;
+    pub fn realpath(__name: *const ::libc::c_char,
+                    __resolved: *mut ::libc::c_char) -> *mut ::libc::c_char;
+    pub fn bsearch(__key: *const ::libc::c_void,
+                   __base: *const ::libc::c_void, __nmemb: size_t,
+                   __size: size_t, __compar: __compar_fn_t) ->
+     *mut ::libc::c_void;
     pub fn qsort(__base: *mut ::libc::c_void, __nmemb: size_t, __size: size_t,
                  __compar: __compar_fn_t);
     pub fn abs(__x: ::libc::c_int) -> ::libc::c_int;
@@ -1421,28 +1523,28 @@ extern "C" {
                    __decpt: *mut ::libc::c_int, __sign: *mut ::libc::c_int,
                    __buf: *mut ::libc::c_char, __len: size_t) ->
      ::libc::c_int;
-    pub fn mblen(__s: *::libc::c_char, __n: size_t) -> ::libc::c_int;
-    pub fn mbtowc(__pwc: *mut wchar_t, __s: *::libc::c_char, __n: size_t) ->
-     ::libc::c_int;
+    pub fn mblen(__s: *const ::libc::c_char, __n: size_t) -> ::libc::c_int;
+    pub fn mbtowc(__pwc: *mut wchar_t, __s: *const ::libc::c_char,
+                  __n: size_t) -> ::libc::c_int;
     pub fn wctomb(__s: *mut ::libc::c_char, __wchar: wchar_t) ->
      ::libc::c_int;
-    pub fn mbstowcs(__pwcs: *mut wchar_t, __s: *::libc::c_char, __n: size_t)
-     -> size_t;
-    pub fn wcstombs(__s: *mut ::libc::c_char, __pwcs: *wchar_t, __n: size_t)
-     -> size_t;
-    pub fn rpmatch(__response: *::libc::c_char) -> ::libc::c_int;
+    pub fn mbstowcs(__pwcs: *mut wchar_t, __s: *const ::libc::c_char,
+                    __n: size_t) -> size_t;
+    pub fn wcstombs(__s: *mut ::libc::c_char, __pwcs: *const wchar_t,
+                    __n: size_t) -> size_t;
+    pub fn rpmatch(__response: *const ::libc::c_char) -> ::libc::c_int;
     pub fn getsubopt(__optionp: *mut *mut ::libc::c_char,
-                     __tokens: **mut ::libc::c_char,
+                     __tokens: *const *mut ::libc::c_char,
                      __valuep: *mut *mut ::libc::c_char) -> ::libc::c_int;
     pub fn getloadavg(__loadavg: *mut ::libc::c_double,
                       __nelem: ::libc::c_int) -> ::libc::c_int;
-    pub fn readv(__fd: ::libc::c_int, __iovec: *Struct_iovec,
+    pub fn readv(__fd: ::libc::c_int, __iovec: *const Struct_iovec,
                  __count: ::libc::c_int) -> ssize_t;
-    pub fn writev(__fd: ::libc::c_int, __iovec: *Struct_iovec,
+    pub fn writev(__fd: ::libc::c_int, __iovec: *const Struct_iovec,
                   __count: ::libc::c_int) -> ssize_t;
-    pub fn preadv(__fd: ::libc::c_int, __iovec: *Struct_iovec,
+    pub fn preadv(__fd: ::libc::c_int, __iovec: *const Struct_iovec,
                   __count: ::libc::c_int, __offset: __off_t) -> ssize_t;
-    pub fn pwritev(__fd: ::libc::c_int, __iovec: *Struct_iovec,
+    pub fn pwritev(__fd: ::libc::c_int, __iovec: *const Struct_iovec,
                    __count: ::libc::c_int, __offset: __off_t) -> ssize_t;
     pub fn __cmsg_nxthdr(__mhdr: *mut Struct_msghdr,
                          __cmsg: *mut Struct_cmsghdr) -> *mut Struct_cmsghdr;
@@ -1451,26 +1553,27 @@ extern "C" {
     pub fn socketpair(__domain: ::libc::c_int, __type: ::libc::c_int,
                       __protocol: ::libc::c_int, __fds: [::libc::c_int, ..2u])
      -> ::libc::c_int;
-    pub fn bind(__fd: ::libc::c_int, __addr: *Struct_sockaddr,
+    pub fn bind(__fd: ::libc::c_int, __addr: *const Struct_sockaddr,
                 __len: socklen_t) -> ::libc::c_int;
     pub fn getsockname(__fd: ::libc::c_int, __addr: *mut Struct_sockaddr,
                        __len: *mut socklen_t) -> ::libc::c_int;
-    pub fn connect(__fd: ::libc::c_int, __addr: *Struct_sockaddr,
+    pub fn connect(__fd: ::libc::c_int, __addr: *const Struct_sockaddr,
                    __len: socklen_t) -> ::libc::c_int;
     pub fn getpeername(__fd: ::libc::c_int, __addr: *mut Struct_sockaddr,
                        __len: *mut socklen_t) -> ::libc::c_int;
-    pub fn send(__fd: ::libc::c_int, __buf: *::libc::c_void, __n: size_t,
-                __flags: ::libc::c_int) -> ssize_t;
+    pub fn send(__fd: ::libc::c_int, __buf: *const ::libc::c_void,
+                __n: size_t, __flags: ::libc::c_int) -> ssize_t;
     pub fn recv(__fd: ::libc::c_int, __buf: *mut ::libc::c_void, __n: size_t,
                 __flags: ::libc::c_int) -> ssize_t;
-    pub fn sendto(__fd: ::libc::c_int, __buf: *::libc::c_void, __n: size_t,
-                  __flags: ::libc::c_int, __addr: *Struct_sockaddr,
-                  __addr_len: socklen_t) -> ssize_t;
+    pub fn sendto(__fd: ::libc::c_int, __buf: *const ::libc::c_void,
+                  __n: size_t, __flags: ::libc::c_int,
+                  __addr: *const Struct_sockaddr, __addr_len: socklen_t) ->
+     ssize_t;
     pub fn recvfrom(__fd: ::libc::c_int, __buf: *mut ::libc::c_void,
                     __n: size_t, __flags: ::libc::c_int,
                     __addr: *mut Struct_sockaddr, __addr_len: *mut socklen_t)
      -> ssize_t;
-    pub fn sendmsg(__fd: ::libc::c_int, __message: *Struct_msghdr,
+    pub fn sendmsg(__fd: ::libc::c_int, __message: *const Struct_msghdr,
                    __flags: ::libc::c_int) -> ssize_t;
     pub fn recvmsg(__fd: ::libc::c_int, __message: *mut Struct_msghdr,
                    __flags: ::libc::c_int) -> ssize_t;
@@ -1478,8 +1581,9 @@ extern "C" {
                       __optname: ::libc::c_int, __optval: *mut ::libc::c_void,
                       __optlen: *mut socklen_t) -> ::libc::c_int;
     pub fn setsockopt(__fd: ::libc::c_int, __level: ::libc::c_int,
-                      __optname: ::libc::c_int, __optval: *::libc::c_void,
-                      __optlen: socklen_t) -> ::libc::c_int;
+                      __optname: ::libc::c_int,
+                      __optval: *const ::libc::c_void, __optlen: socklen_t) ->
+     ::libc::c_int;
     pub fn listen(__fd: ::libc::c_int, __n: ::libc::c_int) -> ::libc::c_int;
     pub fn accept(__fd: ::libc::c_int, __addr: *mut Struct_sockaddr,
                   __addr_len: *mut socklen_t) -> ::libc::c_int;
@@ -1497,38 +1601,39 @@ extern "C" {
     pub fn bindresvport6(__sockfd: ::libc::c_int,
                          __sock_in: *mut Struct_sockaddr_in6) ->
      ::libc::c_int;
-    pub fn inet_addr(__cp: *::libc::c_char) -> in_addr_t;
+    pub fn inet_addr(__cp: *const ::libc::c_char) -> in_addr_t;
     pub fn inet_lnaof(__in: Struct_in_addr) -> in_addr_t;
     pub fn inet_makeaddr(__net: in_addr_t, __host: in_addr_t) ->
      Struct_in_addr;
     pub fn inet_netof(__in: Struct_in_addr) -> in_addr_t;
-    pub fn inet_network(__cp: *::libc::c_char) -> in_addr_t;
+    pub fn inet_network(__cp: *const ::libc::c_char) -> in_addr_t;
     pub fn inet_ntoa(__in: Struct_in_addr) -> *mut ::libc::c_char;
-    pub fn inet_pton(__af: ::libc::c_int, __cp: *::libc::c_char,
+    pub fn inet_pton(__af: ::libc::c_int, __cp: *const ::libc::c_char,
                      __buf: *mut ::libc::c_void) -> ::libc::c_int;
-    pub fn inet_ntop(__af: ::libc::c_int, __cp: *::libc::c_void,
+    pub fn inet_ntop(__af: ::libc::c_int, __cp: *const ::libc::c_void,
                      __buf: *mut ::libc::c_char, __len: socklen_t) ->
-     *::libc::c_char;
-    pub fn inet_aton(__cp: *::libc::c_char, __inp: *mut Struct_in_addr) ->
-     ::libc::c_int;
+     *const ::libc::c_char;
+    pub fn inet_aton(__cp: *const ::libc::c_char, __inp: *mut Struct_in_addr)
+     -> ::libc::c_int;
     pub fn inet_neta(__net: in_addr_t, __buf: *mut ::libc::c_char,
                      __len: size_t) -> *mut ::libc::c_char;
-    pub fn inet_net_ntop(__af: ::libc::c_int, __cp: *::libc::c_void,
+    pub fn inet_net_ntop(__af: ::libc::c_int, __cp: *const ::libc::c_void,
                          __bits: ::libc::c_int, __buf: *mut ::libc::c_char,
                          __len: size_t) -> *mut ::libc::c_char;
-    pub fn inet_net_pton(__af: ::libc::c_int, __cp: *::libc::c_char,
+    pub fn inet_net_pton(__af: ::libc::c_int, __cp: *const ::libc::c_char,
                          __buf: *mut ::libc::c_void, __len: size_t) ->
      ::libc::c_int;
-    pub fn inet_nsap_addr(__cp: *::libc::c_char, __buf: *mut ::libc::c_uchar,
-                          __len: ::libc::c_int) -> ::libc::c_uint;
-    pub fn inet_nsap_ntoa(__len: ::libc::c_int, __cp: *::libc::c_uchar,
+    pub fn inet_nsap_addr(__cp: *const ::libc::c_char,
+                          __buf: *mut ::libc::c_uchar, __len: ::libc::c_int)
+     -> ::libc::c_uint;
+    pub fn inet_nsap_ntoa(__len: ::libc::c_int, __cp: *const ::libc::c_uchar,
                           __buf: *mut ::libc::c_char) -> *mut ::libc::c_char;
     pub fn setrpcent(__stayopen: ::libc::c_int);
     pub fn endrpcent();
-    pub fn getrpcbyname(__name: *::libc::c_char) -> *mut Struct_rpcent;
+    pub fn getrpcbyname(__name: *const ::libc::c_char) -> *mut Struct_rpcent;
     pub fn getrpcbynumber(__number: ::libc::c_int) -> *mut Struct_rpcent;
     pub fn getrpcent() -> *mut Struct_rpcent;
-    pub fn getrpcbyname_r(__name: *::libc::c_char,
+    pub fn getrpcbyname_r(__name: *const ::libc::c_char,
                           __result_buf: *mut Struct_rpcent,
                           __buffer: *mut ::libc::c_char, __buflen: size_t,
                           __result: *mut *mut Struct_rpcent) -> ::libc::c_int;
@@ -1541,32 +1646,34 @@ extern "C" {
                        __buffer: *mut ::libc::c_char, __buflen: size_t,
                        __result: *mut *mut Struct_rpcent) -> ::libc::c_int;
     pub fn __h_errno_location() -> *mut ::libc::c_int;
-    pub fn herror(__str: *::libc::c_char);
-    pub fn hstrerror(__err_num: ::libc::c_int) -> *::libc::c_char;
+    pub fn herror(__str: *const ::libc::c_char);
+    pub fn hstrerror(__err_num: ::libc::c_int) -> *const ::libc::c_char;
     pub fn sethostent(__stay_open: ::libc::c_int);
     pub fn endhostent();
     pub fn gethostent() -> *mut Struct_hostent;
-    pub fn gethostbyaddr(__addr: *::libc::c_void, __len: __socklen_t,
+    pub fn gethostbyaddr(__addr: *const ::libc::c_void, __len: __socklen_t,
                          __type: ::libc::c_int) -> *mut Struct_hostent;
-    pub fn gethostbyname(__name: *::libc::c_char) -> *mut Struct_hostent;
-    pub fn gethostbyname2(__name: *::libc::c_char, __af: ::libc::c_int) ->
+    pub fn gethostbyname(__name: *const ::libc::c_char) ->
      *mut Struct_hostent;
+    pub fn gethostbyname2(__name: *const ::libc::c_char, __af: ::libc::c_int)
+     -> *mut Struct_hostent;
     pub fn gethostent_r(__result_buf: *mut Struct_hostent,
                         __buf: *mut ::libc::c_char, __buflen: size_t,
                         __result: *mut *mut Struct_hostent,
                         __h_errnop: *mut ::libc::c_int) -> ::libc::c_int;
-    pub fn gethostbyaddr_r(__addr: *::libc::c_void, __len: __socklen_t,
+    pub fn gethostbyaddr_r(__addr: *const ::libc::c_void, __len: __socklen_t,
                            __type: ::libc::c_int,
                            __result_buf: *mut Struct_hostent,
                            __buf: *mut ::libc::c_char, __buflen: size_t,
                            __result: *mut *mut Struct_hostent,
                            __h_errnop: *mut ::libc::c_int) -> ::libc::c_int;
-    pub fn gethostbyname_r(__name: *::libc::c_char,
+    pub fn gethostbyname_r(__name: *const ::libc::c_char,
                            __result_buf: *mut Struct_hostent,
                            __buf: *mut ::libc::c_char, __buflen: size_t,
                            __result: *mut *mut Struct_hostent,
                            __h_errnop: *mut ::libc::c_int) -> ::libc::c_int;
-    pub fn gethostbyname2_r(__name: *::libc::c_char, __af: ::libc::c_int,
+    pub fn gethostbyname2_r(__name: *const ::libc::c_char,
+                            __af: ::libc::c_int,
                             __result_buf: *mut Struct_hostent,
                             __buf: *mut ::libc::c_char, __buflen: size_t,
                             __result: *mut *mut Struct_hostent,
@@ -1576,7 +1683,7 @@ extern "C" {
     pub fn getnetent() -> *mut Struct_netent;
     pub fn getnetbyaddr(__net: uint32_t, __type: ::libc::c_int) ->
      *mut Struct_netent;
-    pub fn getnetbyname(__name: *::libc::c_char) -> *mut Struct_netent;
+    pub fn getnetbyname(__name: *const ::libc::c_char) -> *mut Struct_netent;
     pub fn getnetent_r(__result_buf: *mut Struct_netent,
                        __buf: *mut ::libc::c_char, __buflen: size_t,
                        __result: *mut *mut Struct_netent,
@@ -1586,7 +1693,7 @@ extern "C" {
                           __buf: *mut ::libc::c_char, __buflen: size_t,
                           __result: *mut *mut Struct_netent,
                           __h_errnop: *mut ::libc::c_int) -> ::libc::c_int;
-    pub fn getnetbyname_r(__name: *::libc::c_char,
+    pub fn getnetbyname_r(__name: *const ::libc::c_char,
                           __result_buf: *mut Struct_netent,
                           __buf: *mut ::libc::c_char, __buflen: size_t,
                           __result: *mut *mut Struct_netent,
@@ -1594,19 +1701,23 @@ extern "C" {
     pub fn setservent(__stay_open: ::libc::c_int);
     pub fn endservent();
     pub fn getservent() -> *mut Struct_servent;
-    pub fn getservbyname(__name: *::libc::c_char, __proto: *::libc::c_char) ->
+    pub fn getservbyname(__name: *const ::libc::c_char,
+                         __proto: *const ::libc::c_char) ->
      *mut Struct_servent;
-    pub fn getservbyport(__port: ::libc::c_int, __proto: *::libc::c_char) ->
+    pub fn getservbyport(__port: ::libc::c_int,
+                         __proto: *const ::libc::c_char) ->
      *mut Struct_servent;
     pub fn getservent_r(__result_buf: *mut Struct_servent,
                         __buf: *mut ::libc::c_char, __buflen: size_t,
                         __result: *mut *mut Struct_servent) -> ::libc::c_int;
-    pub fn getservbyname_r(__name: *::libc::c_char, __proto: *::libc::c_char,
+    pub fn getservbyname_r(__name: *const ::libc::c_char,
+                           __proto: *const ::libc::c_char,
                            __result_buf: *mut Struct_servent,
                            __buf: *mut ::libc::c_char, __buflen: size_t,
                            __result: *mut *mut Struct_servent) ->
      ::libc::c_int;
-    pub fn getservbyport_r(__port: ::libc::c_int, __proto: *::libc::c_char,
+    pub fn getservbyport_r(__port: ::libc::c_int,
+                           __proto: *const ::libc::c_char,
                            __result_buf: *mut Struct_servent,
                            __buf: *mut ::libc::c_char, __buflen: size_t,
                            __result: *mut *mut Struct_servent) ->
@@ -1614,13 +1725,14 @@ extern "C" {
     pub fn setprotoent(__stay_open: ::libc::c_int);
     pub fn endprotoent();
     pub fn getprotoent() -> *mut Struct_protoent;
-    pub fn getprotobyname(__name: *::libc::c_char) -> *mut Struct_protoent;
+    pub fn getprotobyname(__name: *const ::libc::c_char) ->
+     *mut Struct_protoent;
     pub fn getprotobynumber(__proto: ::libc::c_int) -> *mut Struct_protoent;
     pub fn getprotoent_r(__result_buf: *mut Struct_protoent,
                          __buf: *mut ::libc::c_char, __buflen: size_t,
                          __result: *mut *mut Struct_protoent) ->
      ::libc::c_int;
-    pub fn getprotobyname_r(__name: *::libc::c_char,
+    pub fn getprotobyname_r(__name: *const ::libc::c_char,
                             __result_buf: *mut Struct_protoent,
                             __buf: *mut ::libc::c_char, __buflen: size_t,
                             __result: *mut *mut Struct_protoent) ->
@@ -1630,193 +1742,210 @@ extern "C" {
                               __buf: *mut ::libc::c_char, __buflen: size_t,
                               __result: *mut *mut Struct_protoent) ->
      ::libc::c_int;
-    pub fn setnetgrent(__netgroup: *::libc::c_char) -> ::libc::c_int;
+    pub fn setnetgrent(__netgroup: *const ::libc::c_char) -> ::libc::c_int;
     pub fn endnetgrent();
     pub fn getnetgrent(__hostp: *mut *mut ::libc::c_char,
                        __userp: *mut *mut ::libc::c_char,
                        __domainp: *mut *mut ::libc::c_char) -> ::libc::c_int;
-    pub fn innetgr(__netgroup: *::libc::c_char, __host: *::libc::c_char,
-                   __user: *::libc::c_char, __domain: *::libc::c_char) ->
-     ::libc::c_int;
+    pub fn innetgr(__netgroup: *const ::libc::c_char,
+                   __host: *const ::libc::c_char,
+                   __user: *const ::libc::c_char,
+                   __domain: *const ::libc::c_char) -> ::libc::c_int;
     pub fn getnetgrent_r(__hostp: *mut *mut ::libc::c_char,
                          __userp: *mut *mut ::libc::c_char,
                          __domainp: *mut *mut ::libc::c_char,
                          __buffer: *mut ::libc::c_char, __buflen: size_t) ->
      ::libc::c_int;
     pub fn rcmd(__ahost: *mut *mut ::libc::c_char, __rport: ::libc::c_ushort,
-                __locuser: *::libc::c_char, __remuser: *::libc::c_char,
-                __cmd: *::libc::c_char, __fd2p: *mut ::libc::c_int) ->
+                __locuser: *const ::libc::c_char,
+                __remuser: *const ::libc::c_char,
+                __cmd: *const ::libc::c_char, __fd2p: *mut ::libc::c_int) ->
      ::libc::c_int;
     pub fn rcmd_af(__ahost: *mut *mut ::libc::c_char,
-                   __rport: ::libc::c_ushort, __locuser: *::libc::c_char,
-                   __remuser: *::libc::c_char, __cmd: *::libc::c_char,
-                   __fd2p: *mut ::libc::c_int, __af: sa_family_t) ->
-     ::libc::c_int;
+                   __rport: ::libc::c_ushort,
+                   __locuser: *const ::libc::c_char,
+                   __remuser: *const ::libc::c_char,
+                   __cmd: *const ::libc::c_char, __fd2p: *mut ::libc::c_int,
+                   __af: sa_family_t) -> ::libc::c_int;
     pub fn rexec(__ahost: *mut *mut ::libc::c_char, __rport: ::libc::c_int,
-                 __name: *::libc::c_char, __pass: *::libc::c_char,
-                 __cmd: *::libc::c_char, __fd2p: *mut ::libc::c_int) ->
+                 __name: *const ::libc::c_char, __pass: *const ::libc::c_char,
+                 __cmd: *const ::libc::c_char, __fd2p: *mut ::libc::c_int) ->
      ::libc::c_int;
     pub fn rexec_af(__ahost: *mut *mut ::libc::c_char, __rport: ::libc::c_int,
-                    __name: *::libc::c_char, __pass: *::libc::c_char,
-                    __cmd: *::libc::c_char, __fd2p: *mut ::libc::c_int,
+                    __name: *const ::libc::c_char,
+                    __pass: *const ::libc::c_char,
+                    __cmd: *const ::libc::c_char, __fd2p: *mut ::libc::c_int,
                     __af: sa_family_t) -> ::libc::c_int;
-    pub fn ruserok(__rhost: *::libc::c_char, __suser: ::libc::c_int,
-                   __remuser: *::libc::c_char, __locuser: *::libc::c_char) ->
+    pub fn ruserok(__rhost: *const ::libc::c_char, __suser: ::libc::c_int,
+                   __remuser: *const ::libc::c_char,
+                   __locuser: *const ::libc::c_char) -> ::libc::c_int;
+    pub fn ruserok_af(__rhost: *const ::libc::c_char, __suser: ::libc::c_int,
+                      __remuser: *const ::libc::c_char,
+                      __locuser: *const ::libc::c_char, __af: sa_family_t) ->
      ::libc::c_int;
-    pub fn ruserok_af(__rhost: *::libc::c_char, __suser: ::libc::c_int,
-                      __remuser: *::libc::c_char, __locuser: *::libc::c_char,
-                      __af: sa_family_t) -> ::libc::c_int;
     pub fn iruserok(__raddr: uint32_t, __suser: ::libc::c_int,
-                    __remuser: *::libc::c_char, __locuser: *::libc::c_char) ->
+                    __remuser: *const ::libc::c_char,
+                    __locuser: *const ::libc::c_char) -> ::libc::c_int;
+    pub fn iruserok_af(__raddr: *const ::libc::c_void, __suser: ::libc::c_int,
+                       __remuser: *const ::libc::c_char,
+                       __locuser: *const ::libc::c_char, __af: sa_family_t) ->
      ::libc::c_int;
-    pub fn iruserok_af(__raddr: *::libc::c_void, __suser: ::libc::c_int,
-                       __remuser: *::libc::c_char, __locuser: *::libc::c_char,
-                       __af: sa_family_t) -> ::libc::c_int;
     pub fn rresvport(__alport: *mut ::libc::c_int) -> ::libc::c_int;
     pub fn rresvport_af(__alport: *mut ::libc::c_int, __af: sa_family_t) ->
      ::libc::c_int;
-    pub fn getaddrinfo(__name: *::libc::c_char, __service: *::libc::c_char,
-                       __req: *Struct_addrinfo,
+    pub fn getaddrinfo(__name: *const ::libc::c_char,
+                       __service: *const ::libc::c_char,
+                       __req: *const Struct_addrinfo,
                        __pai: *mut *mut Struct_addrinfo) -> ::libc::c_int;
     pub fn freeaddrinfo(__ai: *mut Struct_addrinfo);
-    pub fn gai_strerror(__ecode: ::libc::c_int) -> *::libc::c_char;
-    pub fn getnameinfo(__sa: *Struct_sockaddr, __salen: socklen_t,
+    pub fn gai_strerror(__ecode: ::libc::c_int) -> *const ::libc::c_char;
+    pub fn getnameinfo(__sa: *const Struct_sockaddr, __salen: socklen_t,
                        __host: *mut ::libc::c_char, __hostlen: socklen_t,
                        __serv: *mut ::libc::c_char, __servlen: socklen_t,
                        __flags: ::libc::c_int) -> ::libc::c_int;
-    pub fn memcpy(__dest: *mut ::libc::c_void, __src: *::libc::c_void,
+    pub fn memcpy(__dest: *mut ::libc::c_void, __src: *const ::libc::c_void,
                   __n: size_t) -> *mut ::libc::c_void;
-    pub fn memmove(__dest: *mut ::libc::c_void, __src: *::libc::c_void,
+    pub fn memmove(__dest: *mut ::libc::c_void, __src: *const ::libc::c_void,
                    __n: size_t) -> *mut ::libc::c_void;
-    pub fn memccpy(__dest: *mut ::libc::c_void, __src: *::libc::c_void,
+    pub fn memccpy(__dest: *mut ::libc::c_void, __src: *const ::libc::c_void,
                    __c: ::libc::c_int, __n: size_t) -> *mut ::libc::c_void;
     pub fn memset(__s: *mut ::libc::c_void, __c: ::libc::c_int, __n: size_t)
      -> *mut ::libc::c_void;
-    pub fn memcmp(__s1: *::libc::c_void, __s2: *::libc::c_void, __n: size_t)
-     -> ::libc::c_int;
-    pub fn memchr(__s: *::libc::c_void, __c: ::libc::c_int, __n: size_t) ->
-     *mut ::libc::c_void;
-    pub fn strcpy(__dest: *mut ::libc::c_char, __src: *::libc::c_char) ->
-     *mut ::libc::c_char;
-    pub fn strncpy(__dest: *mut ::libc::c_char, __src: *::libc::c_char,
+    pub fn memcmp(__s1: *const ::libc::c_void, __s2: *const ::libc::c_void,
+                  __n: size_t) -> ::libc::c_int;
+    pub fn memchr(__s: *const ::libc::c_void, __c: ::libc::c_int, __n: size_t)
+     -> *mut ::libc::c_void;
+    pub fn strcpy(__dest: *mut ::libc::c_char, __src: *const ::libc::c_char)
+     -> *mut ::libc::c_char;
+    pub fn strncpy(__dest: *mut ::libc::c_char, __src: *const ::libc::c_char,
                    __n: size_t) -> *mut ::libc::c_char;
-    pub fn strcat(__dest: *mut ::libc::c_char, __src: *::libc::c_char) ->
-     *mut ::libc::c_char;
-    pub fn strncat(__dest: *mut ::libc::c_char, __src: *::libc::c_char,
+    pub fn strcat(__dest: *mut ::libc::c_char, __src: *const ::libc::c_char)
+     -> *mut ::libc::c_char;
+    pub fn strncat(__dest: *mut ::libc::c_char, __src: *const ::libc::c_char,
                    __n: size_t) -> *mut ::libc::c_char;
-    pub fn strcmp(__s1: *::libc::c_char, __s2: *::libc::c_char) ->
+    pub fn strcmp(__s1: *const ::libc::c_char, __s2: *const ::libc::c_char) ->
      ::libc::c_int;
-    pub fn strncmp(__s1: *::libc::c_char, __s2: *::libc::c_char, __n: size_t)
+    pub fn strncmp(__s1: *const ::libc::c_char, __s2: *const ::libc::c_char,
+                   __n: size_t) -> ::libc::c_int;
+    pub fn strcoll(__s1: *const ::libc::c_char, __s2: *const ::libc::c_char)
      -> ::libc::c_int;
-    pub fn strcoll(__s1: *::libc::c_char, __s2: *::libc::c_char) ->
-     ::libc::c_int;
-    pub fn strxfrm(__dest: *mut ::libc::c_char, __src: *::libc::c_char,
+    pub fn strxfrm(__dest: *mut ::libc::c_char, __src: *const ::libc::c_char,
                    __n: size_t) -> size_t;
-    pub fn strcoll_l(__s1: *::libc::c_char, __s2: *::libc::c_char,
+    pub fn strcoll_l(__s1: *const ::libc::c_char, __s2: *const ::libc::c_char,
                      __l: __locale_t) -> ::libc::c_int;
-    pub fn strxfrm_l(__dest: *mut ::libc::c_char, __src: *::libc::c_char,
-                     __n: size_t, __l: __locale_t) -> size_t;
-    pub fn strdup(__s: *::libc::c_char) -> *mut ::libc::c_char;
-    pub fn strndup(__string: *::libc::c_char, __n: size_t) ->
+    pub fn strxfrm_l(__dest: *mut ::libc::c_char,
+                     __src: *const ::libc::c_char, __n: size_t,
+                     __l: __locale_t) -> size_t;
+    pub fn strdup(__s: *const ::libc::c_char) -> *mut ::libc::c_char;
+    pub fn strndup(__string: *const ::libc::c_char, __n: size_t) ->
      *mut ::libc::c_char;
-    pub fn strchr(__s: *::libc::c_char, __c: ::libc::c_int) ->
+    pub fn strchr(__s: *const ::libc::c_char, __c: ::libc::c_int) ->
      *mut ::libc::c_char;
-    pub fn strrchr(__s: *::libc::c_char, __c: ::libc::c_int) ->
+    pub fn strrchr(__s: *const ::libc::c_char, __c: ::libc::c_int) ->
      *mut ::libc::c_char;
-    pub fn strcspn(__s: *::libc::c_char, __reject: *::libc::c_char) -> size_t;
-    pub fn strspn(__s: *::libc::c_char, __accept: *::libc::c_char) -> size_t;
-    pub fn strpbrk(__s: *::libc::c_char, __accept: *::libc::c_char) ->
+    pub fn strcspn(__s: *const ::libc::c_char,
+                   __reject: *const ::libc::c_char) -> size_t;
+    pub fn strspn(__s: *const ::libc::c_char, __accept: *const ::libc::c_char)
+     -> size_t;
+    pub fn strpbrk(__s: *const ::libc::c_char,
+                   __accept: *const ::libc::c_char) -> *mut ::libc::c_char;
+    pub fn strstr(__haystack: *const ::libc::c_char,
+                  __needle: *const ::libc::c_char) -> *mut ::libc::c_char;
+    pub fn strtok(__s: *mut ::libc::c_char, __delim: *const ::libc::c_char) ->
      *mut ::libc::c_char;
-    pub fn strstr(__haystack: *::libc::c_char, __needle: *::libc::c_char) ->
-     *mut ::libc::c_char;
-    pub fn strtok(__s: *mut ::libc::c_char, __delim: *::libc::c_char) ->
-     *mut ::libc::c_char;
-    pub fn __strtok_r(__s: *mut ::libc::c_char, __delim: *::libc::c_char,
+    pub fn __strtok_r(__s: *mut ::libc::c_char,
+                      __delim: *const ::libc::c_char,
                       __save_ptr: *mut *mut ::libc::c_char) ->
      *mut ::libc::c_char;
-    pub fn strtok_r(__s: *mut ::libc::c_char, __delim: *::libc::c_char,
+    pub fn strtok_r(__s: *mut ::libc::c_char, __delim: *const ::libc::c_char,
                     __save_ptr: *mut *mut ::libc::c_char) ->
      *mut ::libc::c_char;
-    pub fn strlen(__s: *::libc::c_char) -> size_t;
-    pub fn strnlen(__string: *::libc::c_char, __maxlen: size_t) -> size_t;
+    pub fn strlen(__s: *const ::libc::c_char) -> size_t;
+    pub fn strnlen(__string: *const ::libc::c_char, __maxlen: size_t) ->
+     size_t;
     pub fn strerror(__errnum: ::libc::c_int) -> *mut ::libc::c_char;
     pub fn strerror_r(__errnum: ::libc::c_int, __buf: *mut ::libc::c_char,
                       __buflen: size_t) -> ::libc::c_int;
     pub fn strerror_l(__errnum: ::libc::c_int, __l: __locale_t) ->
      *mut ::libc::c_char;
     pub fn __bzero(__s: *mut ::libc::c_void, __n: size_t);
-    pub fn bcopy(__src: *::libc::c_void, __dest: *mut ::libc::c_void,
+    pub fn bcopy(__src: *const ::libc::c_void, __dest: *mut ::libc::c_void,
                  __n: size_t);
     pub fn bzero(__s: *mut ::libc::c_void, __n: size_t);
-    pub fn bcmp(__s1: *::libc::c_void, __s2: *::libc::c_void, __n: size_t) ->
-     ::libc::c_int;
-    pub fn index(__s: *::libc::c_char, __c: ::libc::c_int) ->
+    pub fn bcmp(__s1: *const ::libc::c_void, __s2: *const ::libc::c_void,
+                __n: size_t) -> ::libc::c_int;
+    pub fn index(__s: *const ::libc::c_char, __c: ::libc::c_int) ->
      *mut ::libc::c_char;
-    pub fn rindex(__s: *::libc::c_char, __c: ::libc::c_int) ->
+    pub fn rindex(__s: *const ::libc::c_char, __c: ::libc::c_int) ->
      *mut ::libc::c_char;
     pub fn ffs(__i: ::libc::c_int) -> ::libc::c_int;
-    pub fn strcasecmp(__s1: *::libc::c_char, __s2: *::libc::c_char) ->
+    pub fn strcasecmp(__s1: *const ::libc::c_char,
+                      __s2: *const ::libc::c_char) -> ::libc::c_int;
+    pub fn strncasecmp(__s1: *const ::libc::c_char,
+                       __s2: *const ::libc::c_char, __n: size_t) ->
      ::libc::c_int;
-    pub fn strncasecmp(__s1: *::libc::c_char, __s2: *::libc::c_char,
-                       __n: size_t) -> ::libc::c_int;
     pub fn strsep(__stringp: *mut *mut ::libc::c_char,
-                  __delim: *::libc::c_char) -> *mut ::libc::c_char;
+                  __delim: *const ::libc::c_char) -> *mut ::libc::c_char;
     pub fn strsignal(__sig: ::libc::c_int) -> *mut ::libc::c_char;
-    pub fn __stpcpy(__dest: *mut ::libc::c_char, __src: *::libc::c_char) ->
+    pub fn __stpcpy(__dest: *mut ::libc::c_char, __src: *const ::libc::c_char)
+     -> *mut ::libc::c_char;
+    pub fn stpcpy(__dest: *mut ::libc::c_char, __src: *const ::libc::c_char)
+     -> *mut ::libc::c_char;
+    pub fn __stpncpy(__dest: *mut ::libc::c_char,
+                     __src: *const ::libc::c_char, __n: size_t) ->
      *mut ::libc::c_char;
-    pub fn stpcpy(__dest: *mut ::libc::c_char, __src: *::libc::c_char) ->
-     *mut ::libc::c_char;
-    pub fn __stpncpy(__dest: *mut ::libc::c_char, __src: *::libc::c_char,
-                     __n: size_t) -> *mut ::libc::c_char;
-    pub fn stpncpy(__dest: *mut ::libc::c_char, __src: *::libc::c_char,
+    pub fn stpncpy(__dest: *mut ::libc::c_char, __src: *const ::libc::c_char,
                    __n: size_t) -> *mut ::libc::c_char;
     pub fn libhashkit_has_algorithm(arg1: hashkit_hash_algorithm_t) ->
      ::libc::c_int;
-    pub fn libhashkit_one_at_a_time(key: *::libc::c_char, key_length: size_t)
+    pub fn libhashkit_one_at_a_time(key: *const ::libc::c_char,
+                                    key_length: size_t) -> uint32_t;
+    pub fn libhashkit_fnv1_64(key: *const ::libc::c_char, key_length: size_t)
      -> uint32_t;
-    pub fn libhashkit_fnv1_64(key: *::libc::c_char, key_length: size_t) ->
+    pub fn libhashkit_fnv1a_64(key: *const ::libc::c_char, key_length: size_t)
+     -> uint32_t;
+    pub fn libhashkit_fnv1_32(key: *const ::libc::c_char, key_length: size_t)
+     -> uint32_t;
+    pub fn libhashkit_fnv1a_32(key: *const ::libc::c_char, key_length: size_t)
+     -> uint32_t;
+    pub fn libhashkit_crc32(key: *const ::libc::c_char, key_length: size_t) ->
      uint32_t;
-    pub fn libhashkit_fnv1a_64(key: *::libc::c_char, key_length: size_t) ->
+    pub fn libhashkit_hsieh(key: *const ::libc::c_char, key_length: size_t) ->
      uint32_t;
-    pub fn libhashkit_fnv1_32(key: *::libc::c_char, key_length: size_t) ->
+    pub fn libhashkit_murmur(key: *const ::libc::c_char, key_length: size_t)
+     -> uint32_t;
+    pub fn libhashkit_jenkins(key: *const ::libc::c_char, key_length: size_t)
+     -> uint32_t;
+    pub fn libhashkit_md5(key: *const ::libc::c_char, key_length: size_t) ->
      uint32_t;
-    pub fn libhashkit_fnv1a_32(key: *::libc::c_char, key_length: size_t) ->
-     uint32_t;
-    pub fn libhashkit_crc32(key: *::libc::c_char, key_length: size_t) ->
-     uint32_t;
-    pub fn libhashkit_hsieh(key: *::libc::c_char, key_length: size_t) ->
-     uint32_t;
-    pub fn libhashkit_murmur(key: *::libc::c_char, key_length: size_t) ->
-     uint32_t;
-    pub fn libhashkit_jenkins(key: *::libc::c_char, key_length: size_t) ->
-     uint32_t;
-    pub fn libhashkit_md5(key: *::libc::c_char, key_length: size_t) ->
-     uint32_t;
-    pub fn hashkit_one_at_a_time(key: *::libc::c_char, key_length: size_t,
+    pub fn hashkit_one_at_a_time(key: *const ::libc::c_char,
+                                 key_length: size_t,
                                  context: *mut ::libc::c_void) -> uint32_t;
-    pub fn hashkit_fnv1_64(key: *::libc::c_char, key_length: size_t,
+    pub fn hashkit_fnv1_64(key: *const ::libc::c_char, key_length: size_t,
                            context: *mut ::libc::c_void) -> uint32_t;
-    pub fn hashkit_fnv1a_64(key: *::libc::c_char, key_length: size_t,
+    pub fn hashkit_fnv1a_64(key: *const ::libc::c_char, key_length: size_t,
                             context: *mut ::libc::c_void) -> uint32_t;
-    pub fn hashkit_fnv1_32(key: *::libc::c_char, key_length: size_t,
+    pub fn hashkit_fnv1_32(key: *const ::libc::c_char, key_length: size_t,
                            context: *mut ::libc::c_void) -> uint32_t;
-    pub fn hashkit_fnv1a_32(key: *::libc::c_char, key_length: size_t,
+    pub fn hashkit_fnv1a_32(key: *const ::libc::c_char, key_length: size_t,
                             context: *mut ::libc::c_void) -> uint32_t;
-    pub fn hashkit_crc32(key: *::libc::c_char, key_length: size_t,
+    pub fn hashkit_crc32(key: *const ::libc::c_char, key_length: size_t,
                          context: *mut ::libc::c_void) -> uint32_t;
-    pub fn hashkit_hsieh(key: *::libc::c_char, key_length: size_t,
+    pub fn hashkit_hsieh(key: *const ::libc::c_char, key_length: size_t,
                          context: *mut ::libc::c_void) -> uint32_t;
-    pub fn hashkit_murmur(key: *::libc::c_char, key_length: size_t,
+    pub fn hashkit_murmur(key: *const ::libc::c_char, key_length: size_t,
                           context: *mut ::libc::c_void) -> uint32_t;
-    pub fn hashkit_jenkins(key: *::libc::c_char, key_length: size_t,
+    pub fn hashkit_jenkins(key: *const ::libc::c_char, key_length: size_t,
                            context: *mut ::libc::c_void) -> uint32_t;
-    pub fn hashkit_md5(key: *::libc::c_char, key_length: size_t,
+    pub fn hashkit_md5(key: *const ::libc::c_char, key_length: size_t,
                        context: *mut ::libc::c_void) -> uint32_t;
-    pub fn libhashkit_md5_signature(key: *::libc::c_uchar, length: size_t,
+    pub fn libhashkit_md5_signature(key: *const ::libc::c_uchar,
+                                    length: size_t,
                                     result: *mut ::libc::c_uchar);
-    pub fn hashkit_digest(_self: *hashkit_st, key: *::libc::c_char,
-                          key_length: size_t) -> uint32_t;
-    pub fn libhashkit_digest(key: *::libc::c_char, key_length: size_t,
+    pub fn hashkit_digest(_self: *const hashkit_st,
+                          key: *const ::libc::c_char, key_length: size_t) ->
+     uint32_t;
+    pub fn libhashkit_digest(key: *const ::libc::c_char, key_length: size_t,
                              hash_algorithm: hashkit_hash_algorithm_t) ->
      uint32_t;
     pub fn hashkit_set_function(hash: *mut hashkit_st,
@@ -1826,7 +1955,7 @@ extern "C" {
                                        function: hashkit_hash_fn,
                                        context: *mut ::libc::c_void) ->
      hashkit_return_t;
-    pub fn hashkit_get_function(hash: *hashkit_st) ->
+    pub fn hashkit_get_function(hash: *const hashkit_st) ->
      hashkit_hash_algorithm_t;
     pub fn hashkit_set_distribution_function(hash: *mut hashkit_st,
                                              hash_algorithm:
@@ -1837,50 +1966,53 @@ extern "C" {
                                                     context:
                                                         *mut ::libc::c_void)
      -> hashkit_return_t;
-    pub fn hashkit_get_distribution_function(_self: *hashkit_st) ->
+    pub fn hashkit_get_distribution_function(_self: *const hashkit_st) ->
      hashkit_hash_algorithm_t;
     pub fn libhashkit_string_hash(_type: hashkit_hash_algorithm_t) ->
-     *::libc::c_char;
+     *const ::libc::c_char;
     pub fn hashkit_strerror(ptr: *mut hashkit_st, rc: hashkit_return_t) ->
-     *::libc::c_char;
+     *const ::libc::c_char;
     pub fn hashkit_string_free(ptr: *mut hashkit_string_st);
-    pub fn hashkit_string_length(_self: *hashkit_string_st) -> size_t;
-    pub fn hashkit_string_c_str(_self: *hashkit_string_st) -> *::libc::c_char;
+    pub fn hashkit_string_length(_self: *const hashkit_string_st) -> size_t;
+    pub fn hashkit_string_c_str(_self: *const hashkit_string_st) ->
+     *const ::libc::c_char;
     pub fn hashkit_create(hash: *mut hashkit_st) -> *mut hashkit_st;
-    pub fn hashkit_clone(destination: *mut hashkit_st, ptr: *hashkit_st) ->
-     *mut hashkit_st;
-    pub fn hashkit_compare(first: *hashkit_st, second: *hashkit_st) ->
-     ::libc::c_int;
+    pub fn hashkit_clone(destination: *mut hashkit_st, ptr: *const hashkit_st)
+     -> *mut hashkit_st;
+    pub fn hashkit_compare(first: *const hashkit_st,
+                           second: *const hashkit_st) -> ::libc::c_int;
     pub fn hashkit_free(hash: *mut hashkit_st);
-    pub fn hashkit_encrypt(arg1: *mut hashkit_st, source: *::libc::c_char,
+    pub fn hashkit_encrypt(arg1: *mut hashkit_st,
+                           source: *const ::libc::c_char,
                            source_length: size_t) -> *mut hashkit_string_st;
-    pub fn hashkit_decrypt(arg1: *mut hashkit_st, source: *::libc::c_char,
+    pub fn hashkit_decrypt(arg1: *mut hashkit_st,
+                           source: *const ::libc::c_char,
                            source_length: size_t) -> *mut hashkit_string_st;
-    pub fn hashkit_key(arg1: *mut hashkit_st, key: *::libc::c_char,
+    pub fn hashkit_key(arg1: *mut hashkit_st, key: *const ::libc::c_char,
                        key_length: size_t) -> ::libc::c_int;
     pub fn memcached_last_error_message(arg1: *mut memcached_st) ->
-     *::libc::c_char;
-    pub fn memcached_error_print(arg1: *memcached_st);
+     *const ::libc::c_char;
+    pub fn memcached_error_print(arg1: *const memcached_st);
     pub fn memcached_last_error(arg1: *mut memcached_st) ->
      memcached_return_t;
     pub fn memcached_last_error_errno(arg1: *mut memcached_st) ->
      ::libc::c_int;
     pub fn memcached_server_error(ptr: memcached_server_instance_st) ->
-     *::libc::c_char;
+     *const ::libc::c_char;
     pub fn memcached_server_error_return(ptr: memcached_server_instance_st) ->
      memcached_return_t;
-    pub fn memcached_stat_free(arg1: *memcached_st,
+    pub fn memcached_stat_free(arg1: *const memcached_st,
                                arg2: *mut memcached_stat_st);
     pub fn memcached_stat(ptr: *mut memcached_st, args: *mut ::libc::c_char,
                           error: *mut memcached_return_t) ->
      *mut memcached_stat_st;
     pub fn memcached_stat_servername(memc_stat: *mut memcached_stat_st,
                                      args: *mut ::libc::c_char,
-                                     hostname: *::libc::c_char,
+                                     hostname: *const ::libc::c_char,
                                      port: in_port_t) -> memcached_return_t;
-    pub fn memcached_stat_get_value(ptr: *memcached_st,
+    pub fn memcached_stat_get_value(ptr: *const memcached_st,
                                     memc_stat: *mut memcached_stat_st,
-                                    key: *::libc::c_char,
+                                    key: *const ::libc::c_char,
                                     error: *mut memcached_return_t) ->
      *mut ::libc::c_char;
     pub fn memcached_stat_get_keys(ptr: *mut memcached_st,
@@ -1888,7 +2020,7 @@ extern "C" {
                                    error: *mut memcached_return_t) ->
      *mut *mut ::libc::c_char;
     pub fn memcached_stat_execute(memc: *mut memcached_st,
-                                  args: *::libc::c_char,
+                                  args: *const ::libc::c_char,
                                   func: memcached_stat_fn,
                                   context: *mut ::libc::c_void) ->
      memcached_return_t;
@@ -1899,7 +2031,7 @@ extern "C" {
                                            mem_calloc: memcached_calloc_fn,
                                            context: *mut ::libc::c_void) ->
      memcached_return_t;
-    pub fn memcached_get_memory_allocators(ptr: *memcached_st,
+    pub fn memcached_get_memory_allocators(ptr: *const memcached_st,
                                            mem_malloc:
                                                *mut memcached_malloc_fn,
                                            mem_free: *mut memcached_free_fn,
@@ -1907,35 +2039,37 @@ extern "C" {
                                                *mut memcached_realloc_fn,
                                            mem_calloc:
                                                *mut memcached_calloc_fn);
-    pub fn memcached_get_memory_allocators_context(ptr: *memcached_st) ->
-     *mut ::libc::c_void;
+    pub fn memcached_get_memory_allocators_context(ptr: *const memcached_st)
+     -> *mut ::libc::c_void;
     pub fn memcached_analyze(memc: *mut memcached_st,
                              memc_stat: *mut memcached_stat_st,
                              error: *mut memcached_return_t) ->
      *mut memcached_analysis_st;
     pub fn memcached_analyze_free(arg1: *mut memcached_analysis_st);
-    pub fn memcached_increment(ptr: *mut memcached_st, key: *::libc::c_char,
-                               key_length: size_t, offset: uint32_t,
-                               value: *mut uint64_t) -> memcached_return_t;
-    pub fn memcached_decrement(ptr: *mut memcached_st, key: *::libc::c_char,
-                               key_length: size_t, offset: uint32_t,
-                               value: *mut uint64_t) -> memcached_return_t;
+    pub fn memcached_increment(ptr: *mut memcached_st,
+                               key: *const ::libc::c_char, key_length: size_t,
+                               offset: uint32_t, value: *mut uint64_t) ->
+     memcached_return_t;
+    pub fn memcached_decrement(ptr: *mut memcached_st,
+                               key: *const ::libc::c_char, key_length: size_t,
+                               offset: uint32_t, value: *mut uint64_t) ->
+     memcached_return_t;
     pub fn memcached_increment_by_key(ptr: *mut memcached_st,
-                                      group_key: *::libc::c_char,
+                                      group_key: *const ::libc::c_char,
                                       group_key_length: size_t,
-                                      key: *::libc::c_char,
+                                      key: *const ::libc::c_char,
                                       key_length: size_t, offset: uint64_t,
                                       value: *mut uint64_t) ->
      memcached_return_t;
     pub fn memcached_decrement_by_key(ptr: *mut memcached_st,
-                                      group_key: *::libc::c_char,
+                                      group_key: *const ::libc::c_char,
                                       group_key_length: size_t,
-                                      key: *::libc::c_char,
+                                      key: *const ::libc::c_char,
                                       key_length: size_t, offset: uint64_t,
                                       value: *mut uint64_t) ->
      memcached_return_t;
     pub fn memcached_increment_with_initial(ptr: *mut memcached_st,
-                                            key: *::libc::c_char,
+                                            key: *const ::libc::c_char,
                                             key_length: size_t,
                                             offset: uint64_t,
                                             initial: uint64_t,
@@ -1943,7 +2077,7 @@ extern "C" {
                                             value: *mut uint64_t) ->
      memcached_return_t;
     pub fn memcached_decrement_with_initial(ptr: *mut memcached_st,
-                                            key: *::libc::c_char,
+                                            key: *const ::libc::c_char,
                                             key_length: size_t,
                                             offset: uint64_t,
                                             initial: uint64_t,
@@ -1951,9 +2085,10 @@ extern "C" {
                                             value: *mut uint64_t) ->
      memcached_return_t;
     pub fn memcached_increment_with_initial_by_key(ptr: *mut memcached_st,
-                                                   group_key: *::libc::c_char,
+                                                   group_key:
+                                                       *const ::libc::c_char,
                                                    group_key_length: size_t,
-                                                   key: *::libc::c_char,
+                                                   key: *const ::libc::c_char,
                                                    key_length: size_t,
                                                    offset: uint64_t,
                                                    initial: uint64_t,
@@ -1961,9 +2096,10 @@ extern "C" {
                                                    value: *mut uint64_t) ->
      memcached_return_t;
     pub fn memcached_decrement_with_initial_by_key(ptr: *mut memcached_st,
-                                                   group_key: *::libc::c_char,
+                                                   group_key:
+                                                       *const ::libc::c_char,
                                                    group_key_length: size_t,
-                                                   key: *::libc::c_char,
+                                                   key: *const ::libc::c_char,
                                                    key_length: size_t,
                                                    offset: uint64_t,
                                                    initial: uint64_t,
@@ -1992,44 +2128,48 @@ extern "C" {
     pub fn memcached_behavior_get_distribution_hash(ptr: *mut memcached_st) ->
      memcached_hash_t;
     pub fn libmemcached_string_behavior(flag: memcached_behavior_t) ->
-     *::libc::c_char;
+     *const ::libc::c_char;
     pub fn libmemcached_string_distribution(flag:
                                                 memcached_server_distribution_t)
-     -> *::libc::c_char;
-    pub fn memcached_bucket_set(_self: *mut memcached_st, host_map: *uint32_t,
-                                forward_map: *uint32_t, buckets: uint32_t,
-                                replicas: uint32_t) -> memcached_return_t;
+     -> *const ::libc::c_char;
+    pub fn memcached_bucket_set(_self: *mut memcached_st,
+                                host_map: *const uint32_t,
+                                forward_map: *const uint32_t,
+                                buckets: uint32_t, replicas: uint32_t) ->
+     memcached_return_t;
     pub fn memcached_callback_set(ptr: *mut memcached_st,
                                   flag: memcached_callback_t,
-                                  data: *::libc::c_void) ->
+                                  data: *const ::libc::c_void) ->
      memcached_return_t;
     pub fn memcached_callback_get(ptr: *mut memcached_st,
                                   flag: memcached_callback_t,
                                   error: *mut memcached_return_t) ->
      *mut ::libc::c_void;
-    pub fn memcached_delete(ptr: *mut memcached_st, key: *::libc::c_char,
-                            key_length: size_t, expiration: time_t) ->
-     memcached_return_t;
+    pub fn memcached_delete(ptr: *mut memcached_st,
+                            key: *const ::libc::c_char, key_length: size_t,
+                            expiration: time_t) -> memcached_return_t;
     pub fn memcached_delete_by_key(ptr: *mut memcached_st,
-                                   group_key: *::libc::c_char,
+                                   group_key: *const ::libc::c_char,
                                    group_key_length: size_t,
-                                   key: *::libc::c_char, key_length: size_t,
-                                   expiration: time_t) -> memcached_return_t;
+                                   key: *const ::libc::c_char,
+                                   key_length: size_t, expiration: time_t) ->
+     memcached_return_t;
     pub fn memcached_dump(ptr: *mut memcached_st,
                           function: *mut memcached_dump_fn,
                           context: *mut ::libc::c_void,
                           number_of_callbacks: uint32_t) ->
      memcached_return_t;
     pub fn memcached_set_encoding_key(arg1: *mut memcached_st,
-                                      str: *::libc::c_char, length: size_t) ->
+                                      str: *const ::libc::c_char,
+                                      length: size_t) -> memcached_return_t;
+    pub fn memcached_exist(memc: *mut memcached_st,
+                           key: *const ::libc::c_char, key_length: size_t) ->
      memcached_return_t;
-    pub fn memcached_exist(memc: *mut memcached_st, key: *::libc::c_char,
-                           key_length: size_t) -> memcached_return_t;
     pub fn memcached_exist_by_key(memc: *mut memcached_st,
-                                  group_key: *::libc::c_char,
+                                  group_key: *const ::libc::c_char,
                                   group_key_length: size_t,
-                                  key: *::libc::c_char, key_length: size_t) ->
-     memcached_return_t;
+                                  key: *const ::libc::c_char,
+                                  key_length: size_t) -> memcached_return_t;
     pub fn memcached_fetch_execute(ptr: *mut memcached_st,
                                    callback: *mut memcached_execute_fn,
                                    context: *mut ::libc::c_void,
@@ -2039,25 +2179,27 @@ extern "C" {
      memcached_return_t;
     pub fn memcached_flush_buffers(mem: *mut memcached_st) ->
      memcached_return_t;
-    pub fn memcached_get(ptr: *mut memcached_st, key: *::libc::c_char,
+    pub fn memcached_get(ptr: *mut memcached_st, key: *const ::libc::c_char,
                          key_length: size_t, value_length: *mut size_t,
                          flags: *mut uint32_t, error: *mut memcached_return_t)
      -> *mut ::libc::c_char;
-    pub fn memcached_mget(ptr: *mut memcached_st, keys: **::libc::c_char,
-                          key_length: *size_t, number_of_keys: size_t) ->
-     memcached_return_t;
+    pub fn memcached_mget(ptr: *mut memcached_st,
+                          keys: *const *const ::libc::c_char,
+                          key_length: *const size_t, number_of_keys: size_t)
+     -> memcached_return_t;
     pub fn memcached_get_by_key(ptr: *mut memcached_st,
-                                group_key: *::libc::c_char,
+                                group_key: *const ::libc::c_char,
                                 group_key_length: size_t,
-                                key: *::libc::c_char, key_length: size_t,
-                                value_length: *mut size_t,
+                                key: *const ::libc::c_char,
+                                key_length: size_t, value_length: *mut size_t,
                                 flags: *mut uint32_t,
                                 error: *mut memcached_return_t) ->
      *mut ::libc::c_char;
     pub fn memcached_mget_by_key(ptr: *mut memcached_st,
-                                 group_key: *::libc::c_char,
+                                 group_key: *const ::libc::c_char,
                                  group_key_length: size_t,
-                                 keys: **::libc::c_char, key_length: *size_t,
+                                 keys: *const *const ::libc::c_char,
+                                 key_length: *const size_t,
                                  number_of_keys: size_t) ->
      memcached_return_t;
     pub fn memcached_fetch(ptr: *mut memcached_st, key: *mut ::libc::c_char,
@@ -2070,121 +2212,132 @@ extern "C" {
                                   error: *mut memcached_return_t) ->
      *mut memcached_result_st;
     pub fn memcached_mget_execute(ptr: *mut memcached_st,
-                                  keys: **::libc::c_char, key_length: *size_t,
+                                  keys: *const *const ::libc::c_char,
+                                  key_length: *const size_t,
                                   number_of_keys: size_t,
                                   callback: *mut memcached_execute_fn,
                                   context: *mut ::libc::c_void,
                                   number_of_callbacks: uint32_t) ->
      memcached_return_t;
     pub fn memcached_mget_execute_by_key(ptr: *mut memcached_st,
-                                         group_key: *::libc::c_char,
+                                         group_key: *const ::libc::c_char,
                                          group_key_length: size_t,
-                                         keys: **::libc::c_char,
-                                         key_length: *size_t,
+                                         keys: *const *const ::libc::c_char,
+                                         key_length: *const size_t,
                                          number_of_keys: size_t,
                                          callback: *mut memcached_execute_fn,
                                          context: *mut ::libc::c_void,
                                          number_of_callbacks: uint32_t) ->
      memcached_return_t;
-    pub fn memcached_generate_hash_value(key: *::libc::c_char,
+    pub fn memcached_generate_hash_value(key: *const ::libc::c_char,
                                          key_length: size_t,
                                          hash_algorithm: memcached_hash_t) ->
      uint32_t;
-    pub fn memcached_get_hashkit(ptr: *memcached_st) -> *hashkit_st;
+    pub fn memcached_get_hashkit(ptr: *const memcached_st) ->
+     *const hashkit_st;
     pub fn memcached_set_hashkit(ptr: *mut memcached_st,
                                  hashk: *mut hashkit_st) ->
      memcached_return_t;
-    pub fn memcached_generate_hash(ptr: *memcached_st, key: *::libc::c_char,
+    pub fn memcached_generate_hash(ptr: *const memcached_st,
+                                   key: *const ::libc::c_char,
                                    key_length: size_t) -> uint32_t;
     pub fn memcached_autoeject(ptr: *mut memcached_st);
     pub fn libmemcached_string_hash(_type: memcached_hash_t) ->
-     *::libc::c_char;
-    pub fn libmemcached_check_configuration(option_string: *::libc::c_char,
+     *const ::libc::c_char;
+    pub fn libmemcached_check_configuration(option_string:
+                                                *const ::libc::c_char,
                                             length: size_t,
                                             error_buffer: *mut ::libc::c_char,
                                             error_buffer_size: size_t) ->
      memcached_return_t;
-    pub fn memcached_servers_parse(server_strings: *::libc::c_char) ->
+    pub fn memcached_servers_parse(server_strings: *const ::libc::c_char) ->
      memcached_server_list_st;
     pub fn memcached_quit(ptr: *mut memcached_st);
     pub fn memcached_result_free(result: *mut memcached_result_st);
     pub fn memcached_result_reset(ptr: *mut memcached_result_st);
-    pub fn memcached_result_create(ptr: *memcached_st,
+    pub fn memcached_result_create(ptr: *const memcached_st,
                                    result: *mut memcached_result_st) ->
      *mut memcached_result_st;
-    pub fn memcached_result_key_value(_self: *memcached_result_st) ->
-     *::libc::c_char;
-    pub fn memcached_result_key_length(_self: *memcached_result_st) -> size_t;
-    pub fn memcached_result_value(_self: *memcached_result_st) ->
-     *::libc::c_char;
-    pub fn memcached_result_length(_self: *memcached_result_st) -> size_t;
-    pub fn memcached_result_flags(_self: *memcached_result_st) -> uint32_t;
-    pub fn memcached_result_cas(_self: *memcached_result_st) -> uint64_t;
+    pub fn memcached_result_key_value(_self: *const memcached_result_st) ->
+     *const ::libc::c_char;
+    pub fn memcached_result_key_length(_self: *const memcached_result_st) ->
+     size_t;
+    pub fn memcached_result_value(_self: *const memcached_result_st) ->
+     *const ::libc::c_char;
+    pub fn memcached_result_length(_self: *const memcached_result_st) ->
+     size_t;
+    pub fn memcached_result_flags(_self: *const memcached_result_st) ->
+     uint32_t;
+    pub fn memcached_result_cas(_self: *const memcached_result_st) ->
+     uint64_t;
     pub fn memcached_result_set_value(ptr: *mut memcached_result_st,
-                                      value: *::libc::c_char, length: size_t)
-     -> memcached_return_t;
+                                      value: *const ::libc::c_char,
+                                      length: size_t) -> memcached_return_t;
     pub fn memcached_result_set_flags(_self: *mut memcached_result_st,
                                       flags: uint32_t);
     pub fn memcached_result_set_expiration(_self: *mut memcached_result_st,
                                            expiration: time_t);
-    pub fn memcached_server_cursor(ptr: *memcached_st,
-                                   callback: *memcached_server_fn,
+    pub fn memcached_server_cursor(ptr: *const memcached_st,
+                                   callback: *const memcached_server_fn,
                                    context: *mut ::libc::c_void,
                                    number_of_callbacks: uint32_t) ->
      memcached_return_t;
     pub fn memcached_server_by_key(ptr: *mut memcached_st,
-                                   key: *::libc::c_char, key_length: size_t,
+                                   key: *const ::libc::c_char,
+                                   key_length: size_t,
                                    error: *mut memcached_return_t) ->
      memcached_server_instance_st;
     pub fn memcached_server_error_reset(ptr: *mut memcached_server_st);
     pub fn memcached_server_free(ptr: *mut memcached_server_st);
-    pub fn memcached_server_get_last_disconnect(ptr: *memcached_st) ->
+    pub fn memcached_server_get_last_disconnect(ptr: *const memcached_st) ->
      memcached_server_instance_st;
     pub fn memcached_server_add_udp(ptr: *mut memcached_st,
-                                    hostname: *::libc::c_char,
+                                    hostname: *const ::libc::c_char,
                                     port: in_port_t) -> memcached_return_t;
     pub fn memcached_server_add_unix_socket(ptr: *mut memcached_st,
-                                            filename: *::libc::c_char) ->
-     memcached_return_t;
+                                            filename: *const ::libc::c_char)
+     -> memcached_return_t;
     pub fn memcached_server_add(ptr: *mut memcached_st,
-                                hostname: *::libc::c_char, port: in_port_t) ->
-     memcached_return_t;
+                                hostname: *const ::libc::c_char,
+                                port: in_port_t) -> memcached_return_t;
     pub fn memcached_server_add_udp_with_weight(ptr: *mut memcached_st,
-                                                hostname: *::libc::c_char,
+                                                hostname:
+                                                    *const ::libc::c_char,
                                                 port: in_port_t,
                                                 weight: uint32_t) ->
      memcached_return_t;
     pub fn memcached_server_add_unix_socket_with_weight(ptr:
                                                             *mut memcached_st,
                                                         filename:
-                                                            *::libc::c_char,
+                                                            *const ::libc::c_char,
                                                         weight: uint32_t) ->
      memcached_return_t;
     pub fn memcached_server_add_with_weight(ptr: *mut memcached_st,
-                                            hostname: *::libc::c_char,
+                                            hostname: *const ::libc::c_char,
                                             port: in_port_t, weight: uint32_t)
      -> memcached_return_t;
     pub fn memcached_server_response_count(_self:
                                                memcached_server_instance_st)
      -> uint32_t;
     pub fn memcached_server_name(_self: memcached_server_instance_st) ->
-     *::libc::c_char;
+     *const ::libc::c_char;
     pub fn memcached_server_port(_self: memcached_server_instance_st) ->
      in_port_t;
     pub fn memcached_server_type(ptr: memcached_server_instance_st) ->
-     *::libc::c_char;
+     *const ::libc::c_char;
     pub fn memcached_server_list_free(ptr: memcached_server_list_st);
     pub fn memcached_server_push(ptr: *mut memcached_st,
                                  list: memcached_server_list_st) ->
      memcached_return_t;
     pub fn memcached_server_list_append(ptr: memcached_server_list_st,
-                                        hostname: *::libc::c_char,
+                                        hostname: *const ::libc::c_char,
                                         port: in_port_t,
                                         error: *mut memcached_return_t) ->
      memcached_server_list_st;
     pub fn memcached_server_list_append_with_weight(ptr:
                                                         memcached_server_list_st,
-                                                    hostname: *::libc::c_char,
+                                                    hostname:
+                                                        *const ::libc::c_char,
                                                     port: in_port_t,
                                                     weight: uint32_t,
                                                     error:
@@ -2192,92 +2345,103 @@ extern "C" {
      -> memcached_server_list_st;
     pub fn memcached_server_list_count(ptr: memcached_server_list_st) ->
      uint32_t;
-    pub fn memcached_set(ptr: *mut memcached_st, key: *::libc::c_char,
-                         key_length: size_t, value: *::libc::c_char,
+    pub fn memcached_set(ptr: *mut memcached_st, key: *const ::libc::c_char,
+                         key_length: size_t, value: *const ::libc::c_char,
                          value_length: size_t, expiration: time_t,
                          flags: uint32_t) -> memcached_return_t;
-    pub fn memcached_add(ptr: *mut memcached_st, key: *::libc::c_char,
-                         key_length: size_t, value: *::libc::c_char,
+    pub fn memcached_add(ptr: *mut memcached_st, key: *const ::libc::c_char,
+                         key_length: size_t, value: *const ::libc::c_char,
                          value_length: size_t, expiration: time_t,
                          flags: uint32_t) -> memcached_return_t;
-    pub fn memcached_replace(ptr: *mut memcached_st, key: *::libc::c_char,
-                             key_length: size_t, value: *::libc::c_char,
+    pub fn memcached_replace(ptr: *mut memcached_st,
+                             key: *const ::libc::c_char, key_length: size_t,
+                             value: *const ::libc::c_char,
                              value_length: size_t, expiration: time_t,
                              flags: uint32_t) -> memcached_return_t;
-    pub fn memcached_append(ptr: *mut memcached_st, key: *::libc::c_char,
-                            key_length: size_t, value: *::libc::c_char,
+    pub fn memcached_append(ptr: *mut memcached_st,
+                            key: *const ::libc::c_char, key_length: size_t,
+                            value: *const ::libc::c_char,
                             value_length: size_t, expiration: time_t,
                             flags: uint32_t) -> memcached_return_t;
-    pub fn memcached_prepend(ptr: *mut memcached_st, key: *::libc::c_char,
-                             key_length: size_t, value: *::libc::c_char,
+    pub fn memcached_prepend(ptr: *mut memcached_st,
+                             key: *const ::libc::c_char, key_length: size_t,
+                             value: *const ::libc::c_char,
                              value_length: size_t, expiration: time_t,
                              flags: uint32_t) -> memcached_return_t;
-    pub fn memcached_cas(ptr: *mut memcached_st, key: *::libc::c_char,
-                         key_length: size_t, value: *::libc::c_char,
+    pub fn memcached_cas(ptr: *mut memcached_st, key: *const ::libc::c_char,
+                         key_length: size_t, value: *const ::libc::c_char,
                          value_length: size_t, expiration: time_t,
                          flags: uint32_t, cas: uint64_t) ->
      memcached_return_t;
     pub fn memcached_set_by_key(ptr: *mut memcached_st,
-                                group_key: *::libc::c_char,
+                                group_key: *const ::libc::c_char,
                                 group_key_length: size_t,
-                                key: *::libc::c_char, key_length: size_t,
-                                value: *::libc::c_char, value_length: size_t,
-                                expiration: time_t, flags: uint32_t) ->
-     memcached_return_t;
+                                key: *const ::libc::c_char,
+                                key_length: size_t,
+                                value: *const ::libc::c_char,
+                                value_length: size_t, expiration: time_t,
+                                flags: uint32_t) -> memcached_return_t;
     pub fn memcached_add_by_key(ptr: *mut memcached_st,
-                                group_key: *::libc::c_char,
+                                group_key: *const ::libc::c_char,
                                 group_key_length: size_t,
-                                key: *::libc::c_char, key_length: size_t,
-                                value: *::libc::c_char, value_length: size_t,
-                                expiration: time_t, flags: uint32_t) ->
-     memcached_return_t;
+                                key: *const ::libc::c_char,
+                                key_length: size_t,
+                                value: *const ::libc::c_char,
+                                value_length: size_t, expiration: time_t,
+                                flags: uint32_t) -> memcached_return_t;
     pub fn memcached_replace_by_key(ptr: *mut memcached_st,
-                                    group_key: *::libc::c_char,
+                                    group_key: *const ::libc::c_char,
                                     group_key_length: size_t,
-                                    key: *::libc::c_char, key_length: size_t,
-                                    value: *::libc::c_char,
+                                    key: *const ::libc::c_char,
+                                    key_length: size_t,
+                                    value: *const ::libc::c_char,
                                     value_length: size_t, expiration: time_t,
                                     flags: uint32_t) -> memcached_return_t;
     pub fn memcached_prepend_by_key(ptr: *mut memcached_st,
-                                    group_key: *::libc::c_char,
+                                    group_key: *const ::libc::c_char,
                                     group_key_length: size_t,
-                                    key: *::libc::c_char, key_length: size_t,
-                                    value: *::libc::c_char,
+                                    key: *const ::libc::c_char,
+                                    key_length: size_t,
+                                    value: *const ::libc::c_char,
                                     value_length: size_t, expiration: time_t,
                                     flags: uint32_t) -> memcached_return_t;
     pub fn memcached_append_by_key(ptr: *mut memcached_st,
-                                   group_key: *::libc::c_char,
+                                   group_key: *const ::libc::c_char,
                                    group_key_length: size_t,
-                                   key: *::libc::c_char, key_length: size_t,
-                                   value: *::libc::c_char,
+                                   key: *const ::libc::c_char,
+                                   key_length: size_t,
+                                   value: *const ::libc::c_char,
                                    value_length: size_t, expiration: time_t,
                                    flags: uint32_t) -> memcached_return_t;
     pub fn memcached_cas_by_key(ptr: *mut memcached_st,
-                                group_key: *::libc::c_char,
+                                group_key: *const ::libc::c_char,
                                 group_key_length: size_t,
-                                key: *::libc::c_char, key_length: size_t,
-                                value: *::libc::c_char, value_length: size_t,
-                                expiration: time_t, flags: uint32_t,
-                                cas: uint64_t) -> memcached_return_t;
+                                key: *const ::libc::c_char,
+                                key_length: size_t,
+                                value: *const ::libc::c_char,
+                                value_length: size_t, expiration: time_t,
+                                flags: uint32_t, cas: uint64_t) ->
+     memcached_return_t;
     pub fn memcached_strerror(ptr: *mut memcached_st, rc: memcached_return_t)
-     -> *::libc::c_char;
-    pub fn memcached_touch(ptr: *mut memcached_st, key: *::libc::c_char,
+     -> *const ::libc::c_char;
+    pub fn memcached_touch(ptr: *mut memcached_st, key: *const ::libc::c_char,
                            key_length: size_t, expiration: time_t) ->
      memcached_return_t;
     pub fn memcached_touch_by_key(ptr: *mut memcached_st,
-                                  group_key: *::libc::c_char,
+                                  group_key: *const ::libc::c_char,
                                   group_key_length: size_t,
-                                  key: *::libc::c_char, key_length: size_t,
-                                  expiration: time_t) -> memcached_return_t;
+                                  key: *const ::libc::c_char,
+                                  key_length: size_t, expiration: time_t) ->
+     memcached_return_t;
     pub fn memcached_verbosity(ptr: *mut memcached_st, verbosity: uint32_t) ->
      memcached_return_t;
     pub fn memcached_version(ptr: *mut memcached_st) -> memcached_return_t;
-    pub fn memcached_lib_version() -> *::libc::c_char;
+    pub fn memcached_lib_version() -> *const ::libc::c_char;
     pub fn memcached_set_sasl_callbacks(ptr: *mut memcached_st,
-                                        callbacks: *::libc::c_void);
+                                        callbacks: *const ::libc::c_void);
     pub fn memcached_set_sasl_auth_data(ptr: *mut memcached_st,
-                                        username: *::libc::c_char,
-                                        password: *::libc::c_char) ->
+                                        username: *const ::libc::c_char,
+                                        password: *const ::libc::c_char) ->
      memcached_return_t;
     pub fn memcached_destroy_sasl_auth_data(ptr: *mut memcached_st) ->
      memcached_return_t;
@@ -2285,22 +2449,23 @@ extern "C" {
      *mut ::libc::c_void;
     pub fn memcached_servers_reset(ptr: *mut memcached_st);
     pub fn memcached_create(ptr: *mut memcached_st) -> *mut memcached_st;
-    pub fn memcached(string: *::libc::c_char, string_length: size_t) ->
+    pub fn memcached(string: *const ::libc::c_char, string_length: size_t) ->
      *mut memcached_st;
     pub fn memcached_free(ptr: *mut memcached_st);
     pub fn memcached_reset(ptr: *mut memcached_st) -> memcached_return_t;
     pub fn memcached_reset_last_disconnected_server(ptr: *mut memcached_st);
-    pub fn memcached_clone(clone: *mut memcached_st, ptr: *memcached_st) ->
-     *mut memcached_st;
-    pub fn memcached_get_user_data(ptr: *memcached_st) -> *mut ::libc::c_void;
+    pub fn memcached_clone(clone: *mut memcached_st, ptr: *const memcached_st)
+     -> *mut memcached_st;
+    pub fn memcached_get_user_data(ptr: *const memcached_st) ->
+     *mut ::libc::c_void;
     pub fn memcached_set_user_data(ptr: *mut memcached_st,
                                    data: *mut ::libc::c_void) ->
      *mut ::libc::c_void;
     pub fn memcached_push(destination: *mut memcached_st,
-                          source: *memcached_st) -> memcached_return_t;
-    pub fn memcached_server_instance_by_position(ptr: *memcached_st,
+                          source: *const memcached_st) -> memcached_return_t;
+    pub fn memcached_server_instance_by_position(ptr: *const memcached_st,
                                                  server_key: uint32_t) ->
      memcached_server_instance_st;
-    pub fn memcached_server_count(arg1: *memcached_st) -> uint32_t;
-    pub fn memcached_query_id(arg1: *memcached_st) -> uint64_t;
+    pub fn memcached_server_count(arg1: *const memcached_st) -> uint32_t;
+    pub fn memcached_query_id(arg1: *const memcached_st) -> uint64_t;
 }
