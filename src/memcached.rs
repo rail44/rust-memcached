@@ -39,7 +39,7 @@ impl<'a> Server<'a> {
 
 impl Client {
   pub fn new() -> Client {
-    Client{ cl: unsafe { memcached_create(ptr::mut_null()) } }
+    Client{ cl: unsafe { memcached_create(ptr::null_mut()) } }
   }
 
   pub fn add_server(&self, server: &Server) {
